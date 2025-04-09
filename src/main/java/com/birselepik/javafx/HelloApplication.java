@@ -80,6 +80,7 @@ public class HelloApplication extends Application {
            title VARCHAR(255) NOT NULL,
            content VARCHAR(255) NOT NULL,
            category VARCHAR(100) NOT NULL,
+           userDTO VARCHAR(100) NOT NULL,
            pinned BOOLEAN NOT NULL
         );
     """;

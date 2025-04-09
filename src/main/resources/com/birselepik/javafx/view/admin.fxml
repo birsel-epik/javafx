@@ -140,8 +140,9 @@
                     <TableColumn fx:id="idColumnNotebook" text="ID" prefWidth="40" />
                     <TableColumn fx:id="titleColumn" text="Başlık" prefWidth="80" />
                     <TableColumn fx:id="contentColumn" text="İçerik" prefWidth="80" />
+                    <TableColumn fx:id="userDTOColumn" text="Kullanıcı" prefWidth="100" />
                     <TableColumn fx:id="categoryColumn" text="Kategori" prefWidth="90" />
-                    <TableColumn fx:id="pinnedColumn" text="Sabitlenmiş" prefWidth="90" />
+                    <TableColumn fx:id="pinnedColumn" text="Sabitlenmiş" prefWidth="50" />
                 </columns>
             </TableView>
 

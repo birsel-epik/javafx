@@ -98,8 +98,9 @@ public class AdminController {
     @FXML private TableColumn<NotebookDTO, String> titleColumn;
     @FXML private TableColumn<NotebookDTO, String> contentColumn;
     @FXML private TableColumn<NotebookDTO, String> categoryColumn;
-    //@FXML private TableColumn<NotebookDTO, Boolean> pinnedColumn;
     @FXML private TableColumn<NotebookDTO, String> pinnedColumn;
+    //@FXML private TableColumn<NotebookDTO, String> userDTOColumn;
+    @FXML private ComboBox<UserDTO> userComboBox;
     @FXML private TextField searchNotebookField;
 
 
@@ -171,19 +172,20 @@ public class AdminController {
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         contentColumn.setCellValueFactory(new PropertyValueFactory<>("content"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
-        //pinnedColumn.setCellValueFactory(new PropertyValueFactory<>("pinned"));
-
+        //userDTOColumn.setCellValueFactory(new PropertyValueFactory<>("userDTO"));
+//        userComboBox.setCellFactory(cellData ->
+//                new SimpleStringProperty(cellData.getOpaqueInsets().getLeft() != null ? cellData.getOpaqueInsets().getLeft() : "N/A")
+//        );
 
         pinnedColumn.setCellValueFactory(cellData -> {
             boolean pinnedValue = cellData.getValue().getPinned();
             return new SimpleStringProperty(pinnedValue ? "Evet" : "Hayır");
         });
 
-        //loadUsers();
+        loadUsers();
 
         searchNotebookField.textProperty().addListener((obs, oldVal, newVal) -> applyNotebookFilter());
         refreshNotebookTable();
-
     }
 
     // KULLANICI
@@ -960,8 +962,7 @@ public class AdminController {
     }
 
 
-
-    // KDV
+    ///  KDV  //////////////////////////////////////////////////////////
     // 📄 Listeyi yenile
     private void refreshKdvTable() {
         Optional<List<KdvDTO>> list = kdvDAO.list();
@@ -1113,8 +1114,7 @@ public class AdminController {
         // Daha önce alınmış bir yedek dosyadan veri geri yüklenecek
     }
 
-
-    // NOTEBOOK
+    ///  NOTEBOOK  //////////////////////////////////////////////////////////
     // 📄 Listeyi yenile
     private void refreshNotebookTable() {
         Optional<List<NotebookDTO>> list = notebookDAO.list();
@@ -1185,7 +1185,7 @@ public class AdminController {
     // 💬 Ortak form (ekle/güncelle)
     private NotebookDTO showNotebookForm(NotebookDTO existing) {
         Dialog<NotebookDTO> dialog = new Dialog<>();
-        dialog.setTitle(existing == null ? "Yeni Not Ekle" : "KDV Güncelle");
+        dialog.setTitle(existing == null ? "Yeni Not Ekle" : "Not Güncelle");
 
         TextField titleField = new TextField();
         TextArea contentField = new TextArea();
@@ -1194,47 +1194,58 @@ public class AdminController {
         categoryCombo.getItems().addAll("Kişisel", "İş", "Okul");
         categoryCombo.setValue("Kişisel");
 
+        ComboBox<UserDTO> userCombo = new ComboBox<>();
+        loadUsers(); // Kullanıcıları yükle
+        userCombo.setOnAction(event -> {
+            UserDTO selectedUser = userCombo.getValue();
+            if (selectedUser != null) {
+                System.out.println("Seçilen Kullanıcı: " + selectedUser.getUsername());
+            }
+        });
+
         if (existing != null) {
-            titleField.setText(String.valueOf(existing.getTitle()));
-            contentField.setText(String.valueOf(existing.getContent()));
+            titleField.setText(existing.getTitle());
+            contentField.setText(existing.getContent());
             categoryCombo.setValue(existing.getCategory());
+            pinnedField.setSelected(existing.getPinned());
+            userCombo.setValue(existing.getUserDTO());
         }
+
 
         GridPane grid = new GridPane();
         grid.setHgap(10); grid.setVgap(10);
         grid.addRow(0, new Label("Başlık:"), titleField);
         grid.addRow(1, new Label("İçerik:"), contentField);
         grid.addRow(2, new Label("Kategori:"), categoryCombo);
-        grid.addRow(4, new Label("Sabitle:"), pinnedField);
+        grid.addRow(3, new Label("Sabitle:"), pinnedField);
+        grid.addRow(4, new Label("Kullanıcı:"), userCombo);
 
         dialog.getDialogPane().setContent(grid);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 
         dialog.setResultConverter(btn -> {
             if (btn == ButtonType.OK) {
-                try {
-                    return NotebookDTO.builder()
-                            .title(titleField.getText())
-                            .content(contentField.getText())
-                            .category(categoryCombo.getValue())
-                            .pinned(pinnedField.isSelected())
-                            .build();
-                } catch (Exception e) {
-                    showAlert("Hata", "Geçersiz veri!", Alert.AlertType.ERROR);
-                }
+                return NotebookDTO.builder()
+                        .title(titleField.getText())
+                        .content(contentField.getText())
+                        .category(categoryCombo.getValue())
+                        .pinned(pinnedField.isSelected())
+                        .userDTO(userCombo.getValue()) // Seçilen kullanıcı
+                        .build();
             }
             return null;
         });
 
         Optional<NotebookDTO> result = dialog.showAndWait();
         return result.orElse(null);
+
     }
 
-/*    private void loadUsers() {
+
+    private void loadUsers() {
         UserDAO userDAO = new UserDAO();
         Optional<List<UserDTO>> users = userDAO.list();
         users.ifPresent(userList -> userComboBox.setItems(FXCollections.observableArrayList(userList)));
-    }*/
-
+    }
 
 }

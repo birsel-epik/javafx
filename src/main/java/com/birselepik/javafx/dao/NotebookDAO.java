@@ -24,12 +24,13 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
     // 📥 Yeni Not Ekleme
     @Override
     public Optional<NotebookDTO> create(NotebookDTO notebookDTO) {
-        String sql = "INSERT INTO notebook_table (title, content, category, pinned) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO notebook_table (title, content, category, pinned, user_id) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, notebookDTO.getTitle());
             ps.setString(2, notebookDTO.getContent());
             ps.setString(3, notebookDTO.getCategory());
             ps.setBoolean(4, notebookDTO.getPinned());
+            ps.setInt(5, notebookDTO.getUserDTO().getId());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows > 0) {
@@ -83,13 +84,14 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
     public Optional<NotebookDTO> update(int id, NotebookDTO updated) {
         Optional<NotebookDTO> existing = findById(id);
         if (existing.isPresent()) {
-            String sql = "UPDATE notebook_table SET title=?, content=?, category=?, pinned=? WHERE id=?";
+            String sql = "UPDATE notebook_table SET title=?, content=?, category=?, pinned=?, user_id=? WHERE id=?";
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, updated.getTitle());
                 ps.setString(2, updated.getContent());
                 ps.setString(3, updated.getCategory());
                 ps.setBoolean(4, updated.getPinned());
-                ps.setInt(5, id);
+                ps.setInt(5, updated.getUserDTO().getId());
+                ps.setInt(6, id);
 
                 int affected = ps.executeUpdate();
                 if (affected > 0) {
@@ -125,21 +127,22 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
     // 📄 Listeyi güncelleme
     @Override
     public NotebookDTO mapToObjectDTO(ResultSet rs) throws SQLException {
+        UserDTO userDTO = getUserById(rs.getInt("user_id"));
         return NotebookDTO.builder()
                 .id(rs.getInt("id"))
                 .title(rs.getString("title"))
                 .content(rs.getString("content"))
                 .category(rs.getString("category"))
                 .pinned(rs.getBoolean("pinned"))
+                .userDTO(userDTO)
                 .build();
     }
 
-    // Kullanıcı ID'sine göre UserDTO'yu almak için bir metot
-    /*private UserDTO getUserById(int userId) {
-        // Burada UserDAO'yu kullanarak gerekli sorguyu yapabilirsiniz
+
+    private UserDTO getUserById(int userId) {
         UserDAO userDAO = new UserDAO();
         return userDAO.findById(userId).orElse(null);
-    }*/
+    }
 
 
     // 📄 Not seçimi
