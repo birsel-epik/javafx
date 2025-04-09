@@ -1,6 +1,7 @@
 package com.birselepik.javafx.controller;
 
 import com.birselepik.javafx.dao.NotebookDAO;
+import com.birselepik.javafx.dao.UserDAO;
 import com.birselepik.javafx.dto.NotebookDTO;
 import com.birselepik.javafx.dto.UserDTO;
 import javafx.collections.FXCollections;
@@ -16,6 +17,8 @@ import java.util.Optional;
 
 public class NotebookController {
 
+    /* Şu anda burası kullanılmıyor !!! */
+
     private final NotebookDAO notebookDAO = new NotebookDAO();
 
     @FXML private TableView<NotebookDTO> notebookTable;
@@ -27,7 +30,9 @@ public class NotebookController {
     @FXML private TableColumn<NotebookDTO, String> categoryColumn;
     @FXML private TableColumn<NotebookDTO, Boolean> pinnedColumn;
     @FXML private TableColumn<NotebookDTO, UserDTO> userDTOColumn;
-    @FXML private TextField searchField;
+    @FXML private ComboBox<UserDTO> userComboBox;
+
+    @FXML private TextField searchNotebookField;
 
 
     @FXML
@@ -36,25 +41,32 @@ public class NotebookController {
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         contentColumn.setCellValueFactory(new PropertyValueFactory<>("content"));
         createdDateColumn.setCellValueFactory(new PropertyValueFactory<>("createdDate"));
-        //updatedDateColumn.setCellValueFactory(new PropertyValueFactory<>("updatedDate"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
         pinnedColumn.setCellValueFactory(new PropertyValueFactory<>("pinned"));
         userDTOColumn.setCellValueFactory(new PropertyValueFactory<>("userDTO"));
 
-        searchField.textProperty().addListener((obs, oldVal, newVal) -> applyFilter());
+        loadUsers();
+
+        searchNotebookField.textProperty().addListener((obs, oldVal, newVal) -> applyNotebookFilter());
         refreshNotebookTable();
     }
 
+    private void loadUsers() {
+        UserDAO userDAO = new UserDAO();
+        Optional<List<UserDTO>> users = userDAO.list();
+        users.ifPresent(userList -> userComboBox.setItems(FXCollections.observableArrayList(userList)));
+    }
 
-    // tabloyu yenile
+
+    // 📄 Listeyi yenile
     public void refreshNotebookTable() {
         Optional<List<NotebookDTO>> list = notebookDAO.list();
         list.ifPresent(data -> notebookTable.setItems(FXCollections.observableArrayList(data)));
     }
 
-    //
-    private void applyFilter() {
-        String keyword = searchField.getText().trim().toLowerCase();
+    // 🔎 Arama filtreleme
+    private void applyNotebookFilter() {
+        String keyword = searchNotebookField.getText().trim().toLowerCase();
         Optional<List<NotebookDTO>> all = notebookDAO.list();
         List<NotebookDTO> filtered = all.orElse(List.of()).stream()
                 .filter(note -> note.getTitle().toLowerCase().contains(keyword))
@@ -63,15 +75,15 @@ public class NotebookController {
     }
 
 
-    // clearFilters
+    // clearNotebookFilters
     @FXML
-    public void clearFilters() {
-        searchField.clear();
+    public void clearNotebookFilters() {
+        searchNotebookField.clear();
         refreshNotebookTable();
     }
 
 
-    // addNotebook
+    // ➕ NOT ekle
     @FXML
     public void addNotebook(ActionEvent event) {
         NotebookDTO newNotebook = showNotebookForm(null);
@@ -83,7 +95,7 @@ public class NotebookController {
     }
 
 
-    // updaNotebook
+    // ✏️ NOT güncelle
     @FXML
     public void updateNotebook(ActionEvent event) {
         NotebookDTO selected = notebookTable.getSelectionModel().getSelectedItem();
@@ -100,7 +112,7 @@ public class NotebookController {
     }
 
 
-    // deleteKdv
+    // ❌ NOT sil
     @FXML
     public void deleteNotebook(ActionEvent event) {
         NotebookDTO selected = notebookTable.getSelectionModel().getSelectedItem();
@@ -128,7 +140,7 @@ public class NotebookController {
     }
 
 
-    // showNotebookForm
+    // 💬 Ortak form (ekle/güncelle)
     private NotebookDTO showNotebookForm(NotebookDTO existing) {
         Dialog<NotebookDTO> dialog = new Dialog<>();
         dialog.setTitle(existing == null ? "Yeni Not Ekle" : "Not Güncelle");
@@ -137,15 +149,16 @@ public class NotebookController {
         TextField contentField = new TextField();
         DatePicker createdDateField = new DatePicker(LocalDate.now());
         CheckBox pinnedField = new CheckBox();
-        TextField userDTOField = new TextField();
+        ComboBox<UserDTO> userComboBox = new ComboBox<>();
         ComboBox<String> categoryCombo = new ComboBox<>();
         categoryCombo.getItems().addAll("Kişisel", "İş", "Okul");
         categoryCombo.setValue("Kişisel");
 
         if (existing != null) {
-            titleField.setText(String.valueOf(existing.getTitle()));
-            contentField.setText(String.valueOf(existing.getContent()));
+            titleField.setText(existing.getTitle());
+            contentField.setText(existing.getContent());
             categoryCombo.setValue(existing.getCategory());
+            //userComboBox.setValue(existing.getUserDTO());
         }
 
         GridPane grid = new GridPane();
@@ -155,7 +168,7 @@ public class NotebookController {
         grid.addRow(2, new Label("Kategori:"), categoryCombo);
         grid.addRow(3, new Label("Tarih:"), createdDateField);
         grid.addRow(4, new Label("Sabitle:"), pinnedField);
-        grid.addRow(5, new Label("Kullanıcı:"), userDTOField);
+        grid.addRow(5, new Label("Kullanıcı:"), userComboBox);
 
         dialog.getDialogPane().setContent(grid);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
@@ -167,8 +180,8 @@ public class NotebookController {
                             .title(titleField.getText())
                             .content(contentField.getText())
                             .category(categoryCombo.getValue())
-                            .pinned(Boolean.parseBoolean(pinnedField.getTypeSelector()))
-                            //.userDTO(userDTOField.getUserData())
+                            .pinned(pinnedField.isSelected())
+                            //.userDTO(userComboBox.getValue())
                             .build();
                 } catch (Exception e) {
                     showAlert("Hata", "Geçersiz veri girdiniz!", Alert.AlertType.ERROR);
@@ -180,7 +193,5 @@ public class NotebookController {
         Optional<NotebookDTO> result = dialog.showAndWait();
         return result.orElse(null);
     }
-
-
 
 }

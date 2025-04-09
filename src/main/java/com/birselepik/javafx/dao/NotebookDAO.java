@@ -2,6 +2,7 @@ package com.birselepik.javafx.dao;
 
 import com.birselepik.javafx.database.SingletonPropertiesDBConnection;
 import com.birselepik.javafx.dto.NotebookDTO;
+import com.birselepik.javafx.dto.UserDTO;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -23,15 +24,12 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
     // 📥 Yeni Not Ekleme
     @Override
     public Optional<NotebookDTO> create(NotebookDTO notebookDTO) {
-        String sql = "INSERT INTO notebook_table (title, content, createdDate, updatedDate, category, pinned, userDTO) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO notebook_table (title, content, category, pinned) VALUES (?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, notebookDTO.getTitle());
             ps.setString(2, notebookDTO.getContent());
-            ps.setDate(3, Date.valueOf(notebookDTO.getCreatedDate()));
-            ps.setDate(4, Date.valueOf(notebookDTO.getUpdatedDate()));
-            ps.setString(5, notebookDTO.getCategory());
-            ps.setBoolean(6, notebookDTO.getPinned());
-            //ps.setString(7, notebookDTO.getuserDTO());
+            ps.setString(3, notebookDTO.getCategory());
+            ps.setBoolean(4, notebookDTO.getPinned());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows > 0) {
@@ -48,11 +46,12 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
         return Optional.empty();
     }
 
-    // 📄 Tüm Notları Alma
+
+    // 📄 Tüm Notları Listeleme
     @Override
     public Optional<List<NotebookDTO>> list() {
         List<NotebookDTO> list = new ArrayList<>();
-        String sql = "SELECT * FROM notebook_table ORDER BY createdDate DESC";
+        String sql = "SELECT * FROM notebook_table ORDER BY id DESC";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -84,15 +83,12 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
     public Optional<NotebookDTO> update(int id, NotebookDTO updated) {
         Optional<NotebookDTO> existing = findById(id);
         if (existing.isPresent()) {
-            String sql = "UPDATE notebook_table SET title=?, content=?, createdDate=?, updatedDate=?, category=?, pinned=?, userDTO=?";
+            String sql = "UPDATE notebook_table SET title=?, content=?, category=?, pinned=? WHERE id=?";
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, updated.getTitle());
                 ps.setString(2, updated.getContent());
-                ps.setDate(3, Date.valueOf(updated.getCreatedDate()));
-                ps.setDate(4, Date.valueOf(updated.getUpdatedDate()));
                 ps.setString(5, updated.getCategory());
                 ps.setBoolean(6, updated.getPinned());
-                //ps.setBoolean(7, updated.getUserDTO());
                 ps.setInt(8, id);
 
                 int affected = ps.executeUpdate();
@@ -135,18 +131,22 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
                 .content(rs.getString("content"))
                 .category(rs.getString("category"))
                 .pinned(rs.getBoolean("pinned"))
-                .createdDate(rs.getDate("createdDate").toLocalDate())
-                .updatedDate(rs.getDate("updatedDate").toLocalDate())
-                .pinned(rs.getBoolean("userDTO"))
                 .build();
     }
+
+    // Kullanıcı ID'sine göre UserDTO'yu almak için bir metot
+    /*private UserDTO getUserById(int userId) {
+        // Burada UserDAO'yu kullanarak gerekli sorguyu yapabilirsiniz
+        UserDAO userDAO = new UserDAO();
+        return userDAO.findById(userId).orElse(null);
+    }*/
 
 
     // 📄 Not seçimi
     @Override
     public Optional<NotebookDTO> selectSingle(String sql, Object... params) {
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            for (int i = 0; i > params.length; i++) {
+            for (int i = 0; i < params.length; i++) {
                 ps.setObject(i + 1, params[i]);
             }
             try (ResultSet rs = ps.executeQuery()) {

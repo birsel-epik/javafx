@@ -79,45 +79,26 @@ public class AdminController {
 
 
     // KDV için
-    @FXML
-    private TableView<KdvDTO> kdvTable;
-    @FXML
-    private TableColumn<KdvDTO, Integer> idColumnKdv;
-    @FXML
-    private TableColumn<KdvDTO, Double> amountColumn;
-    @FXML
-    private TableColumn<KdvDTO, Double> kdvRateColumn;
-    @FXML
-    private TableColumn<KdvDTO, Double> kdvAmountColumn;
-    @FXML
-    private TableColumn<KdvDTO, Double> totalAmountColumn;
-    @FXML
-    private TableColumn<KdvDTO, String> receiptColumn;
-    @FXML
-    private TableColumn<KdvDTO, LocalDate> dateColumn;
-    @FXML
-    private TableColumn<KdvDTO, String> descColumn;
-    @FXML
-    private TextField searchKdvField;
+    @FXML private TableView<KdvDTO> kdvTable;
+    @FXML private TableColumn<KdvDTO, Integer> idColumnKdv;
+    @FXML private TableColumn<KdvDTO, Double> amountColumn;
+    @FXML private TableColumn<KdvDTO, Double> kdvRateColumn;
+    @FXML private TableColumn<KdvDTO, Double> kdvAmountColumn;
+    @FXML private TableColumn<KdvDTO, Double> totalAmountColumn;
+    @FXML private TableColumn<KdvDTO, String> receiptColumn;
+    @FXML private TableColumn<KdvDTO, LocalDate> dateColumn;
+    @FXML private TableColumn<KdvDTO, String> descColumn;
+    @FXML private TextField searchKdvField;
 
 
     // NOTEBOOK için
-    @FXML
-    private TableView<NotebookDTO> notebookTable;
-    @FXML
-    private TableColumn<NotebookDTO, Integer> idColumnNotebook;
-    @FXML
-    private TableColumn<NotebookDTO, String> titleColumn;
-    @FXML
-    private TableColumn<NotebookDTO, String> contentColumn;
-    @FXML
-    private TableColumn<NotebookDTO, LocalDate> createdDateColumn;
-    @FXML
-    private TableColumn<NotebookDTO, String> categoryColumn;
-    @FXML
-    private TableColumn<NotebookDTO, Boolean> pinnedColumn;
-    @FXML
-    private TextField searchNotebookField;
+    @FXML private TableView<NotebookDTO> notebookTable;
+    @FXML private TableColumn<NotebookDTO, Integer> idColumnNotebook;
+    @FXML private TableColumn<NotebookDTO, String> titleColumn;
+    @FXML private TableColumn<NotebookDTO, String> contentColumn;
+    @FXML private TableColumn<NotebookDTO, String> categoryColumn;
+    @FXML private TableColumn<NotebookDTO, Boolean> pinnedColumn;
+    @FXML private TextField searchNotebookField;
 
 
     @FXML
@@ -182,18 +163,19 @@ public class AdminController {
         refreshKdvTable();
 
 
-        // NOTEBOOK İÇİN
-        // NOTEBOOK tablosunu hazırla
+        // NOTBOOK İÇİN
+        // NOT tablosunu hazırla
         idColumnNotebook.setCellValueFactory(new PropertyValueFactory<>("id"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         contentColumn.setCellValueFactory(new PropertyValueFactory<>("content"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
         pinnedColumn.setCellValueFactory(new PropertyValueFactory<>("pinned"));
-        createdDateColumn.setCellValueFactory(new PropertyValueFactory<>("createdDate"));
+
+        //loadUsers();
 
         searchNotebookField.textProperty().addListener((obs, oldVal, newVal) -> applyNotebookFilter());
-
         refreshNotebookTable();
+
     }
 
     // KULLANICI
@@ -226,11 +208,11 @@ public class AdminController {
         filterRoleComboBox.setValue(null);
     }
 
-    // openKdvPane
+    // openKdvPane // todo: bbunu sil
     @FXML
     public void openKdvPane() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/birselepik/ijavafx/view/kdv.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/birselepik/javafx/view/kdv.fxml"));
             Parent kdvRoot = loader.load();
             Stage stage = new Stage();
             stage.setTitle("KDV Paneli");
@@ -242,11 +224,11 @@ public class AdminController {
         }
     }
 
-    // openNotebookPane
+    // openNotebookPane // todo: bbunu sil
     @FXML
     public void openNotebookPane() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/birselepik/ijavafx/view/notebook.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/birselepik/javafx/view/notebook.fxml"));
             Parent notebookRoot = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Not Paneli");
@@ -336,6 +318,8 @@ public class AdminController {
         }
     }
 
+
+    // todo: bunu sil
     @FXML
     public void openKdvCalculator() {
         Dialog<Void> dialog = new Dialog<>();
@@ -404,6 +388,7 @@ public class AdminController {
         dialog.showAndWait();
     }
 
+
     // todo: burayı kontrol et
     private void showExportOptions(String content) {
         ChoiceDialog<String> dialog = new ChoiceDialog<>("TXT", "TXT", "PDF", "EXCEL", "MAIL");
@@ -420,6 +405,8 @@ public class AdminController {
         });
     }
 
+
+    // todo: burayı kontrol et
     private void sendMail(String content) {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("E-Posta Gönder");
@@ -613,22 +600,25 @@ public class AdminController {
         return builder.toString();
     }
 
-
+    // todo: burayı sil
     @FXML
     private void handleNew() {
         System.out.println("Yeni oluşturuluyor...");
     }
 
+    // todo: burayı sil
     @FXML
     private void handleOpen() {
         System.out.println("Dosya açılıyor...");
     }
 
+    // todo: burayı sil
     @FXML
     private void handleExit() {
         Platform.exit();
     }
 
+    // todo: burayı sil
     @FXML
     private void goToUsers(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/path/to/user.fxml"));
@@ -637,6 +627,7 @@ public class AdminController {
         stage.show();
     }
 
+    // todo: burayı sil
     @FXML
     private void goToSettings(ActionEvent event) throws IOException {
        /* Parent root = FXMLLoader.load(getClass().getResource("/path/to/settings.fxml"));
@@ -655,9 +646,7 @@ public class AdminController {
     }
 
 
-
-
-    /// //////////////////////////////////////////////////////////
+    ///  USER  //////////////////////////////////////////////////////////
     private static class AddUserDialog extends Dialog<UserDTO> {
         private final TextField usernameField = new TextField();
         private final PasswordField passwordField = new PasswordField();
@@ -742,7 +731,7 @@ public class AdminController {
     }
 
 
-
+    // todo: burayı sil
     @FXML
     public void addUserEski(ActionEvent actionEvent) {
         // Sayfa açılır açılmaz geliyor
@@ -864,6 +853,7 @@ public class AdminController {
     }
 
 
+    // todo: burayı sil
     @FXML
     public void updateUserEski(ActionEvent actionEvent) {
         UserDTO selectedUser = userTable.getSelectionModel().getSelectedItem();
@@ -909,6 +899,7 @@ public class AdminController {
             showAlert("Hata", "Güncelleme sırasında hata oluştu!", Alert.AlertType.ERROR);
         }
     }
+
 
     @FXML
     public void updateUser(ActionEvent actionEvent) {
@@ -959,6 +950,8 @@ public class AdminController {
             }
         });
     }
+
+
 
     // KDV
     // 📄 Listeyi yenile
@@ -1120,6 +1113,7 @@ public class AdminController {
         list.ifPresent(data -> notebookTable.setItems(FXCollections.observableArrayList(data)));
     }
 
+
     // 🔎 Arama filtreleme
     private void applyNotebookFilter() {
         String keyword = searchNotebookField.getText().trim().toLowerCase();
@@ -1134,9 +1128,9 @@ public class AdminController {
     // ➕ NOT ekle
     @FXML
     public void addNotebook() {
-        NotebookDTO newNote = showNotebookForm(null);
-        if (newNote != null && newNote.isValid()) {
-            notebookDAO.create(newNote);
+        NotebookDTO newNotebook = showNotebookForm(null);
+        if (newNotebook != null && newNotebook.isValid()) {
+            notebookDAO.create(newNotebook);
             refreshNotebookTable();
             showAlert("Başarılı", "Not kaydı eklendi.", Alert.AlertType.INFORMATION);
         }
@@ -1156,7 +1150,7 @@ public class AdminController {
         if (updated != null && updated.isValid()) {
             notebookDAO.update(selected.getId(), updated);
             refreshNotebookTable();
-            showAlert("Başarılı", "KDV kaydı güncellendi.", Alert.AlertType.INFORMATION);
+            showAlert("Başarılı", "Not kaydı güncellendi.", Alert.AlertType.INFORMATION);
         }
     }
 
@@ -1179,6 +1173,7 @@ public class AdminController {
         }
     }
 
+
     // 💬 Ortak form (ekle/güncelle)
     private NotebookDTO showNotebookForm(NotebookDTO existing) {
         Dialog<NotebookDTO> dialog = new Dialog<>();
@@ -1186,7 +1181,6 @@ public class AdminController {
 
         TextField titleField = new TextField();
         TextField contentField = new TextField();
-        DatePicker createdDateField = new DatePicker(LocalDate.now());
         CheckBox pinnedField = new CheckBox();
         ComboBox<String> categoryCombo = new ComboBox<>();
         categoryCombo.getItems().addAll("Kişisel", "İş", "Okul");
@@ -1196,7 +1190,6 @@ public class AdminController {
             titleField.setText(String.valueOf(existing.getTitle()));
             contentField.setText(String.valueOf(existing.getContent()));
             categoryCombo.setValue(existing.getCategory());
-            pinnedField.setSelected(existing.getPinned());
         }
 
         GridPane grid = new GridPane();
@@ -1204,7 +1197,6 @@ public class AdminController {
         grid.addRow(0, new Label("Başlık:"), titleField);
         grid.addRow(1, new Label("İçerik:"), contentField);
         grid.addRow(2, new Label("Kategori:"), categoryCombo);
-        grid.addRow(3, new Label("Tarih:"), createdDateField);
         grid.addRow(4, new Label("Sabitle:"), pinnedField);
 
         dialog.getDialogPane().setContent(grid);
@@ -1230,9 +1222,11 @@ public class AdminController {
         return result.orElse(null);
     }
 
-   /* @FXML
-    private void notebook(ActionEvent event) {
-        // notebook
+/*    private void loadUsers() {
+        UserDAO userDAO = new UserDAO();
+        Optional<List<UserDTO>> users = userDAO.list();
+        users.ifPresent(userList -> userComboBox.setItems(FXCollections.observableArrayList(userList)));
     }*/
+
 
 }

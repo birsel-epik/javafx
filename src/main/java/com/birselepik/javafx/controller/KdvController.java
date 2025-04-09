@@ -15,6 +15,8 @@ import java.util.Optional;
 
 public class KdvController {
 
+    /* Şu anda burası kullanılmıyor !!! */
+
     private final KdvDAO kdvDAO = new KdvDAO();
 
     @FXML private TableView<KdvDTO> kdvTable;

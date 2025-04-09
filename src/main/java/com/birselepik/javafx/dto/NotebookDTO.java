@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-//@NoArgsConstructor
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @ToString
@@ -23,10 +23,10 @@ public class NotebookDTO {
     private String content;
 
     // 📅 Oluşturulma tarihi
-    private LocalDate createdDate;
+    //private LocalDate createdDate;
 
     // 📅 Güncellenme tarihi
-    private LocalDate updatedDate;
+    //private LocalDate updatedDate;
 
     // 📂 Kategori (Örn: "Kişisel", "İş", "Okul")
     private String category;
@@ -35,16 +35,12 @@ public class NotebookDTO {
     private Boolean pinned;
 
     // 👤 Kullanıcı bilgileri (Composition)
-    private UserDTO userDTO;
+    //private UserDTO userDTO;
 
 
     // ✅ Geçerlilik kontrolü
     public boolean isValid() {
-        return title != null && !title.isEmpty() && content != null && !content.isEmpty() && userDTO != null;
-    }
-
-    // Constructorlar
-    public NotebookDTO() {
+        return title != null && title.isEmpty() && category != null && !category.isEmpty();
     }
 
 
@@ -53,19 +49,13 @@ public class NotebookDTO {
         return String.format("""
                 Başlık     : %s
                 İçerik     : %s
-                Oluşturulma Tarihi: %s
-                Güncellenme Tarihi: %s
                 Kategori   : %s
                 Sabitlenmiş: %s
-                Kullanıcı   : %s
                 """,
                 title,
                 content,
-                createdDate,
-                updatedDate,
                 category,
-                pinned ? "Evet" : "Hayır",
-                userDTO != null ? userDTO.toString() : "-"
+                pinned ? "Evet" : "Hayır"
         );
     }
 

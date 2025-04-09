@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.birselepik.javafx.controller.NotebookController">
 
+    <!-- Şu anda burası kullanılmıyor !!! -->
     <!-- ÜST: Arama ve Filtre -->
     <top>
         <HBox spacing="10" padding="10">
             <Label text="Ara (Başlık):" />
-            <TextField fx:id="searchField" promptText="Başlık giriniz..." />
-            <Button text="Filtreyi Temizle" onAction="#clearFilters" />
+            <TextField fx:id="searchNotebookField" promptText="Başlık giriniz..." />
+            <Button text="Filtreyi Temizle" onAction="#clearNotebookFilters" />
         </HBox>
     </top>
 
