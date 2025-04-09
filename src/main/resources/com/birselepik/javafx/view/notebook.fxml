@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.birselepik.javafx.controller.NotebookController">
+
+    <!-- ÜST: Arama ve Filtre -->
+    <top>
+        <HBox spacing="10" padding="10">
+            <Label text="Ara (Başlık):" />
+            <TextField fx:id="searchField" promptText="Başlık giriniz..." />
+            <Button text="Filtreyi Temizle" onAction="#clearFilters" />
+        </HBox>
+    </top>
+
+    <!-- ORTA: Tablo -->
+    <center>
+        <TableView fx:id="notebookTable">
+            <columns>
+                <TableColumn fx:id="idColumnNotebook" text="ID" />
+                <TableColumn fx:id="createdDateColumn" text="Tarih" />
+                <TableColumn fx:id="titleColumn" text="Başlık" />
+                <TableColumn fx:id="contentColumn" text="İçerik" />
+                <TableColumn fx:id="categoryColumn" text="Kategori" />
+                <TableColumn fx:id="userColumn" text="Kullanıcı" />
+                <TableColumn fx:id="pinnedColumn" text="Sabitlenmiş" />
+            </columns>
+        </TableView>
+    </center>
+
+    <!-- ALT: Butonlar -->
+    <bottom>
+        <HBox spacing="10" padding="10" alignment="CENTER_RIGHT">
+            <Button text="Not Ekle" onAction="#addNotebook" />
+            <Button text="Güncelle" onAction="#updateNotebook" />
+            <Button text="Sil" onAction="#deleteNotebook" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

@@ -1,0 +1,37 @@
+2025-04-09 13:24:01.264219+03:00 database: close
+org.h2.message.DbException: IO Exception: "Closing" [90028-224]
+	at com.h2database@2.2.224/org.h2.message.DbException.get(DbException.java:212)
+	at com.h2database@2.2.224/org.h2.mvstore.db.Store.close(Store.java:374)
+	at com.h2database@2.2.224/org.h2.engine.Database.closeOpenFilesAndUnlock(Database.java:1293)
+	at com.h2database@2.2.224/org.h2.engine.Database.closeImpl(Database.java:1255)
+	at com.h2database@2.2.224/org.h2.engine.Database.close(Database.java:1174)
+	at com.h2database@2.2.224/org.h2.engine.Database.onShutdown(Database.java:1159)
+	at com.h2database@2.2.224/org.h2.engine.OnExitDatabaseCloser.onShutdown(OnExitDatabaseCloser.java:85)
+	at com.h2database@2.2.224/org.h2.engine.OnExitDatabaseCloser.run(OnExitDatabaseCloser.java:114)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: IO Exception: "Closing" [90028-224]
+	at com.h2database@2.2.224/org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at com.h2database@2.2.224/org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 8 more
+Caused by: org.h2.mvstore.MVStoreException: Reading from file sun.nio.ch.FileChannelImpl@53feae6f failed at 12288 (length 8192), read 0, remaining 8192 [2.2.224/1]
+	at com.h2database@2.2.224/org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at com.h2database@2.2.224/org.h2.mvstore.DataUtils.readFully(DataUtils.java:455)
+	at com.h2database@2.2.224/org.h2.mvstore.FileStore.readFully(FileStore.java:719)
+	at com.h2database@2.2.224/org.h2.mvstore.SingleFileStore.readFully(SingleFileStore.java:60)
+	at com.h2database@2.2.224/org.h2.mvstore.SingleFileStore.readFully(SingleFileStore.java:28)
+	at com.h2database@2.2.224/org.h2.mvstore.RandomAccessStore.moveChunk(RandomAccessStore.java:658)
+	at com.h2database@2.2.224/org.h2.mvstore.RandomAccessStore.compactMoveChunks(RandomAccessStore.java:544)
+	at com.h2database@2.2.224/org.h2.mvstore.RandomAccessStore.compactMoveChunks(RandomAccessStore.java:481)
+	at com.h2database@2.2.224/org.h2.mvstore.RandomAccessStore.lambda$compactMoveChunks$1(RandomAccessStore.java:468)
+	at com.h2database@2.2.224/org.h2.mvstore.FileStore.executeFileStoreOperation(FileStore.java:1888)
+	at com.h2database@2.2.224/org.h2.mvstore.MVStore.executeFilestoreOperation(MVStore.java:922)
+	at com.h2database@2.2.224/org.h2.mvstore.RandomAccessStore.compactMoveChunks(RandomAccessStore.java:463)
+	at com.h2database@2.2.224/org.h2.mvstore.RandomAccessStore.compactStore(RandomAccessStore.java:443)
+	at com.h2database@2.2.224/org.h2.mvstore.FileStore.compactStore(FileStore.java:888)
+	at com.h2database@2.2.224/org.h2.mvstore.FileStore.stop(FileStore.java:275)
+	at com.h2database@2.2.224/org.h2.mvstore.MVStore.closeStore(MVStore.java:693)
+	at com.h2database@2.2.224/org.h2.mvstore.MVStore.close(MVStore.java:643)
+	at com.h2database@2.2.224/org.h2.mvstore.db.Store.close(Store.java:364)
+	... 6 more
+Caused by: java.io.EOFException
+	at com.h2database@2.2.224/org.h2.mvstore.DataUtils.readFully(DataUtils.java:443)
+	... 22 more

@@ -1,0 +1,13 @@
+src/
+├── com.birselepik.javafx.dao/
+│   ├── UserDAO.java
+│   ├── DBConnection.java
+├── com.birselepik.javafx.dto/
+│   ├── UserDTO.java
+├── com.birselepik.javafx.controller/
+│   ├── LoginController.java
+│   ├── RegisterController.java
+├── view/
+│   ├── login.fxml
+│   ├── register.fxml
+├── MainApp.java
