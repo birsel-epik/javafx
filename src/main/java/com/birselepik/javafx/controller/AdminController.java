@@ -1180,7 +1180,7 @@ public class AdminController {
         dialog.setTitle(existing == null ? "Yeni Not Ekle" : "KDV Güncelle");
 
         TextField titleField = new TextField();
-        TextField contentField = new TextField();
+        TextArea contentField = new TextArea();
         CheckBox pinnedField = new CheckBox();
         ComboBox<String> categoryCombo = new ComboBox<>();
         categoryCombo.getItems().addAll("Kişisel", "İş", "Okul");

@@ -77,8 +77,8 @@ public class HelloApplication extends Application {
         String createNotebookTableSQL = """
       CREATE TABLE IF NOT EXISTS notebook_table (
            id INT AUTO_INCREMENT PRIMARY KEY,
-           title VARCHAR(100) NOT NULL,
-           content VARCHAR(100) NOT NULL,
+           title VARCHAR(255) NOT NULL,
+           content VARCHAR(255) NOT NULL,
            category VARCHAR(100) NOT NULL,
            pinned BOOLEAN NOT NULL
         );

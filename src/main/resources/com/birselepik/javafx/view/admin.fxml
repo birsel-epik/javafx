@@ -138,11 +138,9 @@
             <TableView fx:id="notebookTable" prefHeight="300" style="-fx-border-color: #bdc3c7; -fx-background-radius: 10;">
                 <columns>
                     <TableColumn fx:id="idColumnNotebook" text="ID" prefWidth="40" />
-                    <!--<TableColumn fx:id="createdDateColumn" text="Tarih" prefWidth="90" />-->
                     <TableColumn fx:id="titleColumn" text="Başlık" prefWidth="80" />
                     <TableColumn fx:id="contentColumn" text="İçerik" prefWidth="80" />
                     <TableColumn fx:id="categoryColumn" text="Kategori" prefWidth="90" />
-                    <!--<TableColumn fx:id="userColumn" text="Kullanıcı" prefWidth="90" />-->
                     <TableColumn fx:id="pinnedColumn" text="Sabitlenmiş" prefWidth="90" />
                 </columns>
             </TableView>

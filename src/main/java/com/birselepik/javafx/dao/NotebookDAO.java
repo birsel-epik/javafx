@@ -87,9 +87,9 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, updated.getTitle());
                 ps.setString(2, updated.getContent());
-                ps.setString(5, updated.getCategory());
-                ps.setBoolean(6, updated.getPinned());
-                ps.setInt(8, id);
+                ps.setString(3, updated.getCategory());
+                ps.setBoolean(4, updated.getPinned());
+                ps.setInt(5, id);
 
                 int affected = ps.executeUpdate();
                 if (affected > 0) {
@@ -109,7 +109,7 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
     public Optional<NotebookDTO> delete(int id) {
         Optional<NotebookDTO> existing = findById(id);
         if (existing.isPresent()) {
-            String sql = "DELETE FROM notebook_table WHERE id = ?";
+            String sql = "DELETE FROM notebook_table WHERE id=?";
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, id);
                 int affected = ps.executeUpdate();

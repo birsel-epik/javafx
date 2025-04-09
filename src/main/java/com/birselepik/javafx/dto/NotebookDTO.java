@@ -22,25 +22,16 @@ public class NotebookDTO {
     // 📃 Notun içeriği
     private String content;
 
-    // 📅 Oluşturulma tarihi
-    //private LocalDate createdDate;
-
-    // 📅 Güncellenme tarihi
-    //private LocalDate updatedDate;
-
     // 📂 Kategori (Örn: "Kişisel", "İş", "Okul")
     private String category;
 
     // 📌 Sabitlenmiş not mu?
     private Boolean pinned;
 
-    // 👤 Kullanıcı bilgileri (Composition)
-    //private UserDTO userDTO;
-
 
     // ✅ Geçerlilik kontrolü
     public boolean isValid() {
-        return title != null && title.isEmpty() && category != null && !category.isEmpty();
+        return content != null;
     }
 
 
