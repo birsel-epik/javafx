@@ -2,6 +2,7 @@ package com.birselepik.javafx.controller;
 
 import com.birselepik.javafx.dao.NotebookDAO;
 import com.birselepik.javafx.dto.NotebookDTO;
+import com.birselepik.javafx.dto.UserDTO;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,6 +26,7 @@ public class NotebookController {
     //@FXML private TableColumn<NotebookDTO, LocalDate> updatedDateColumn;
     @FXML private TableColumn<NotebookDTO, String> categoryColumn;
     @FXML private TableColumn<NotebookDTO, Boolean> pinnedColumn;
+    @FXML private TableColumn<NotebookDTO, UserDTO> userDTOColumn;
     @FXML private TextField searchField;
 
 
@@ -37,6 +39,7 @@ public class NotebookController {
         //updatedDateColumn.setCellValueFactory(new PropertyValueFactory<>("updatedDate"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
         pinnedColumn.setCellValueFactory(new PropertyValueFactory<>("pinned"));
+        userDTOColumn.setCellValueFactory(new PropertyValueFactory<>("userDTO"));
 
         searchField.textProperty().addListener((obs, oldVal, newVal) -> applyFilter());
         refreshNotebookTable();
@@ -66,6 +69,7 @@ public class NotebookController {
         searchField.clear();
         refreshNotebookTable();
     }
+
 
     // addNotebook
     @FXML
@@ -111,8 +115,6 @@ public class NotebookController {
             notebookDAO.delete(selected.getId());
             refreshNotebookTable();
             showAlert("Silindi", "Not silindi.", Alert.AlertType.INFORMATION);
-
-
         }
     }
 
@@ -135,15 +137,15 @@ public class NotebookController {
         TextField contentField = new TextField();
         DatePicker createdDateField = new DatePicker(LocalDate.now());
         CheckBox pinnedField = new CheckBox();
+        TextField userDTOField = new TextField();
         ComboBox<String> categoryCombo = new ComboBox<>();
-        categoryCombo.getItems().addAll("XXX", "YYY", "TTT");
-        categoryCombo.setValue("TXT");
+        categoryCombo.getItems().addAll("Kişisel", "İş", "Okul");
+        categoryCombo.setValue("Kişisel");
 
         if (existing != null) {
             titleField.setText(String.valueOf(existing.getTitle()));
             contentField.setText(String.valueOf(existing.getContent()));
             categoryCombo.setValue(existing.getCategory());
-            pinnedField.setSelected(existing.getPinned());
         }
 
         GridPane grid = new GridPane();
@@ -153,6 +155,7 @@ public class NotebookController {
         grid.addRow(2, new Label("Kategori:"), categoryCombo);
         grid.addRow(3, new Label("Tarih:"), createdDateField);
         grid.addRow(4, new Label("Sabitle:"), pinnedField);
+        grid.addRow(5, new Label("Kullanıcı:"), userDTOField);
 
         dialog.getDialogPane().setContent(grid);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
@@ -165,6 +168,7 @@ public class NotebookController {
                             .content(contentField.getText())
                             .category(categoryCombo.getValue())
                             .pinned(Boolean.parseBoolean(pinnedField.getTypeSelector()))
+                            //.userDTO(userDTOField.getUserData())
                             .build();
                 } catch (Exception e) {
                     showAlert("Hata", "Geçersiz veri girdiniz!", Alert.AlertType.ERROR);

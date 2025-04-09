@@ -20,10 +20,10 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
         this.connection = SingletonPropertiesDBConnection.getInstance().getConnection();
     }
 
-    // 📥 Yeni not ekleme
+    // 📥 Yeni Not Ekleme
     @Override
     public Optional<NotebookDTO> create(NotebookDTO notebookDTO) {
-        String sql = "INSERT INTO notebook_table (title, content, createdDate, updatedDate, category, pinned, user) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO notebook_table (title, content, createdDate, updatedDate, category, pinned, userDTO) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, notebookDTO.getTitle());
             ps.setString(2, notebookDTO.getContent());
@@ -31,6 +31,7 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
             ps.setDate(4, Date.valueOf(notebookDTO.getUpdatedDate()));
             ps.setString(5, notebookDTO.getCategory());
             ps.setBoolean(6, notebookDTO.getPinned());
+            //ps.setString(7, notebookDTO.getuserDTO());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows > 0) {
@@ -47,7 +48,7 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
         return Optional.empty();
     }
 
-    // 📄 Tüm notları alma
+    // 📄 Tüm Notları Alma
     @Override
     public Optional<List<NotebookDTO>> list() {
         List<NotebookDTO> list = new ArrayList<>();
@@ -64,21 +65,21 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
         return Optional.empty();
     }
 
-    // 📄 ID ile not bulma
+    // 📄 ID ile Not bulma
     @Override
     public Optional<NotebookDTO> findById(int id) {
         String sql = "SELECT * FROM notebook_table WHERE id = ?";
         return selectSingle(sql, id);
     }
 
-    // 📄 Name ile not bulma
+    // 📄 Title ile Not bulma
     @Override
     public Optional<NotebookDTO> findByName(String title) {
         String sql = "SELECT * FROM notebook_table WHERE title = ?";
         return selectSingle(sql, title);
     }
 
-    // 🔄 Not güncelleme
+    // 🔄 Not Güncelleme
     @Override
     public Optional<NotebookDTO> update(int id, NotebookDTO updated) {
         Optional<NotebookDTO> existing = findById(id);
@@ -87,11 +88,12 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, updated.getTitle());
                 ps.setString(2, updated.getContent());
-                //ps.setDate(3, Date.valueOf(updated.getCreatedDate()));
-                // ps.setDate(4, Date.valueOf(notebookDTO.getUpdatedDate()));
+                ps.setDate(3, Date.valueOf(updated.getCreatedDate()));
+                ps.setDate(4, Date.valueOf(updated.getUpdatedDate()));
                 ps.setString(5, updated.getCategory());
                 ps.setBoolean(6, updated.getPinned());
-                ps.setInt(7, id);
+                //ps.setBoolean(7, updated.getUserDTO());
+                ps.setInt(8, id);
 
                 int affected = ps.executeUpdate();
                 if (affected > 0) {
@@ -133,6 +135,9 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
                 .content(rs.getString("content"))
                 .category(rs.getString("category"))
                 .pinned(rs.getBoolean("pinned"))
+                .createdDate(rs.getDate("createdDate").toLocalDate())
+                .updatedDate(rs.getDate("updatedDate").toLocalDate())
+                .pinned(rs.getBoolean("userDTO"))
                 .build();
     }
 

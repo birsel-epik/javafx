@@ -40,13 +40,13 @@ public class NotebookDTO {
 
     // ✅ Geçerlilik kontrolü
     public boolean isValid() {
-        return title != null && !title.isEmpty() && content != null && !content.isEmpty()
-                && createdDate != null && userDTO != null;
+        return title != null && !title.isEmpty() && content != null && !content.isEmpty() && userDTO != null;
     }
 
     // Constructorlar
     public NotebookDTO() {
     }
+
 
     // 📄 Dışa aktarım için sade metin formatı
     public String toExportString() {

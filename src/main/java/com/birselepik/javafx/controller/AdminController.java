@@ -1189,8 +1189,8 @@ public class AdminController {
         DatePicker createdDateField = new DatePicker(LocalDate.now());
         CheckBox pinnedField = new CheckBox();
         ComboBox<String> categoryCombo = new ComboBox<>();
-        categoryCombo.getItems().addAll("XXX", "YYY", "TTT");
-        categoryCombo.setValue("TXT");
+        categoryCombo.getItems().addAll("Kişisel", "İş", "Okul");
+        categoryCombo.setValue("Kişisel");
 
         if (existing != null) {
             titleField.setText(String.valueOf(existing.getTitle()));
