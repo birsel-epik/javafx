@@ -12,6 +12,7 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -97,7 +98,8 @@ public class AdminController {
     @FXML private TableColumn<NotebookDTO, String> titleColumn;
     @FXML private TableColumn<NotebookDTO, String> contentColumn;
     @FXML private TableColumn<NotebookDTO, String> categoryColumn;
-    @FXML private TableColumn<NotebookDTO, Boolean> pinnedColumn;
+    //@FXML private TableColumn<NotebookDTO, Boolean> pinnedColumn;
+    @FXML private TableColumn<NotebookDTO, String> pinnedColumn;
     @FXML private TextField searchNotebookField;
 
 
@@ -169,7 +171,13 @@ public class AdminController {
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         contentColumn.setCellValueFactory(new PropertyValueFactory<>("content"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
-        pinnedColumn.setCellValueFactory(new PropertyValueFactory<>("pinned"));
+        //pinnedColumn.setCellValueFactory(new PropertyValueFactory<>("pinned"));
+
+
+        pinnedColumn.setCellValueFactory(cellData -> {
+            boolean pinnedValue = cellData.getValue().getPinned();
+            return new SimpleStringProperty(pinnedValue ? "Evet" : "Hayır");
+        });
 
         //loadUsers();
 
@@ -1209,7 +1217,7 @@ public class AdminController {
                             .title(titleField.getText())
                             .content(contentField.getText())
                             .category(categoryCombo.getValue())
-                            .pinned(Boolean.parseBoolean(pinnedField.getTypeSelector()))
+                            .pinned(pinnedField.isSelected())
                             .build();
                 } catch (Exception e) {
                     showAlert("Hata", "Geçersiz veri!", Alert.AlertType.ERROR);
