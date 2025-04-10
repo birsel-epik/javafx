@@ -191,28 +191,4 @@ public class UserDAO implements IDaoImplements<UserDTO>, ILogin<UserDTO> {
     }
 
 
-    public List<UserDTO> findAll() {
-        List<UserDTO> userList = new ArrayList<>();
-
-        String sql = "SELECT * FROM users";
-
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            ResultSet rs = preparedStatement.executeQuery();
-
-            while (rs.next()) {
-                UserDTO user = new UserDTO();
-                user.setId((int) rs.getLong("id"));
-                user.setUsername(rs.getString("username"));
-                user.setEmail(rs.getString("email"));
-                user.setPassword(rs.getString("password"));
-                userList.add(user);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return userList;
-    }
-
 }

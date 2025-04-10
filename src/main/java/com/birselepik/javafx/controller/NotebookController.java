@@ -11,10 +11,9 @@ import javafx.stage.Stage;
 import lombok.Getter;
 
 import java.util.List;
+import java.util.Optional;
 
 public class NotebookController {
-
-    /* Şu anda burası kullanılmıyor !!! */
 
     @FXML private TextField titleField;
     @FXML private TextArea contentField;
@@ -52,9 +51,12 @@ public class NotebookController {
 
     private void loadUsers() {
         UserDAO userDAO = new UserDAO();
-        List<UserDTO> users = userDAO.findAll();
-        userField.setItems(FXCollections.observableArrayList(users));
+        Optional<List<UserDTO>> usersOpt = userDAO.list();  // 👈 Bunu kullan
+        if (usersOpt.isPresent()) {
+            userField.setItems(FXCollections.observableArrayList(usersOpt.get()));
+        }
     }
+
 
 
     // AdminController bu metotla veri gönderir
