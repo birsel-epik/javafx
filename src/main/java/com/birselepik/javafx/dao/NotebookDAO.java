@@ -29,8 +29,8 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
             ps.setString(1, notebookDTO.getTitle());
             ps.setString(2, notebookDTO.getContent());
             ps.setString(3, notebookDTO.getCategory());
-            ps.setBoolean(4, notebookDTO.getPinned());
-            ps.setInt(5, notebookDTO.getUserDTO().getId());
+            ps.setInt(4, notebookDTO.getUserDTO().getId());
+            ps.setBoolean(5, notebookDTO.getPinned());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows > 0) {
@@ -84,13 +84,13 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
     public Optional<NotebookDTO> update(int id, NotebookDTO updated) {
         Optional<NotebookDTO> existing = findById(id);
         if (existing.isPresent()) {
-            String sql = "UPDATE notebook_table SET title=?, content=?, category=?, pinned=?, user_id=? WHERE id=?";
+            String sql = "UPDATE notebook_table SET title=?, content=?, category=?, user_id=?, pinned=? WHERE id=?";
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, updated.getTitle());
                 ps.setString(2, updated.getContent());
                 ps.setString(3, updated.getCategory());
-                ps.setBoolean(4, updated.getPinned());
-                ps.setInt(5, updated.getUserDTO().getId());
+                ps.setInt(4, updated.getUserDTO().getId());
+                ps.setBoolean(5, updated.getPinned());
                 ps.setInt(6, id);
 
                 int affected = ps.executeUpdate();
@@ -133,8 +133,8 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
                 .title(rs.getString("title"))
                 .content(rs.getString("content"))
                 .category(rs.getString("category"))
-                .pinned(rs.getBoolean("pinned"))
                 .userDTO(userDTO)
+                .pinned(rs.getBoolean("pinned"))
                 .build();
     }
 

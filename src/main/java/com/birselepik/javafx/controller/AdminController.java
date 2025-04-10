@@ -98,9 +98,9 @@ public class AdminController {
     @FXML private TableColumn<NotebookDTO, String> titleColumn;
     @FXML private TableColumn<NotebookDTO, String> contentColumn;
     @FXML private TableColumn<NotebookDTO, String> categoryColumn;
-    @FXML private TableColumn<NotebookDTO, String> pinnedColumn;
     //@FXML private TableColumn<NotebookDTO, String> userDTOColumn;
     @FXML private ComboBox<UserDTO> userComboBox;
+    @FXML private TableColumn<NotebookDTO, String> pinnedColumn;
     @FXML private TextField searchNotebookField;
 
 
@@ -173,9 +173,10 @@ public class AdminController {
         contentColumn.setCellValueFactory(new PropertyValueFactory<>("content"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
         //userDTOColumn.setCellValueFactory(new PropertyValueFactory<>("userDTO"));
-//        userComboBox.setCellFactory(cellData ->
-//                new SimpleStringProperty(cellData.getOpaqueInsets().getLeft() != null ? cellData.getOpaqueInsets().getLeft() : "N/A")
-//        );
+        usernameColumn.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getUserDTO() != null ?
+                        cellData.getValue().getUserDTO().getUsername() : "N/A")
+        );
 
         pinnedColumn.setCellValueFactory(cellData -> {
             boolean pinnedValue = cellData.getValue().getPinned();
@@ -183,7 +184,6 @@ public class AdminController {
         });
 
         loadUsers();
-
         searchNotebookField.textProperty().addListener((obs, oldVal, newVal) -> applyNotebookFilter());
         refreshNotebookTable();
     }
@@ -1083,6 +1083,8 @@ public class AdminController {
         return result.orElse(null);
     }
 
+
+
     // BİTİRME PROJESİ
     @FXML
     private void toggleTheme(ActionEvent event) {
@@ -1144,7 +1146,6 @@ public class AdminController {
         }
     }
 
-
     // ✏️ NOT güncelle
     @FXML
     public void updateNotebook() {
@@ -1190,14 +1191,14 @@ public class AdminController {
         TextField titleField = new TextField();
         TextArea contentField = new TextArea();
         CheckBox pinnedField = new CheckBox();
-        ComboBox<String> categoryCombo = new ComboBox<>();
-        categoryCombo.getItems().addAll("Kişisel", "İş", "Okul");
-        categoryCombo.setValue("Kişisel");
+        ComboBox<String> categoryField = new ComboBox<>();
+        categoryField.getItems().addAll("Kişisel", "İş", "Okul");
+        categoryField.setValue("Kişisel");
 
-        ComboBox<UserDTO> userCombo = new ComboBox<>();
+        ComboBox<UserDTO> userField = new ComboBox<>();
         loadUsers(); // Kullanıcıları yükle
-        userCombo.setOnAction(event -> {
-            UserDTO selectedUser = userCombo.getValue();
+        userField.setOnAction(event -> {
+            UserDTO selectedUser = userField.getValue();
             if (selectedUser != null) {
                 System.out.println("Seçilen Kullanıcı: " + selectedUser.getUsername());
             }
@@ -1206,9 +1207,9 @@ public class AdminController {
         if (existing != null) {
             titleField.setText(existing.getTitle());
             contentField.setText(existing.getContent());
-            categoryCombo.setValue(existing.getCategory());
+            categoryField.setValue(existing.getCategory());
             pinnedField.setSelected(existing.getPinned());
-            userCombo.setValue(existing.getUserDTO());
+            userField.setValue(existing.getUserDTO());
         }
 
 
@@ -1216,9 +1217,9 @@ public class AdminController {
         grid.setHgap(10); grid.setVgap(10);
         grid.addRow(0, new Label("Başlık:"), titleField);
         grid.addRow(1, new Label("İçerik:"), contentField);
-        grid.addRow(2, new Label("Kategori:"), categoryCombo);
+        grid.addRow(2, new Label("Kategori:"), categoryField);
+        grid.addRow(4, new Label("Kullanıcı:"), userField);
         grid.addRow(3, new Label("Sabitle:"), pinnedField);
-        grid.addRow(4, new Label("Kullanıcı:"), userCombo);
 
         dialog.getDialogPane().setContent(grid);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
@@ -1228,9 +1229,9 @@ public class AdminController {
                 return NotebookDTO.builder()
                         .title(titleField.getText())
                         .content(contentField.getText())
-                        .category(categoryCombo.getValue())
+                        .category(categoryField.getValue())
+                        .userDTO(userField.getValue()) // Seçilen kullanıcı
                         .pinned(pinnedField.isSelected())
-                        .userDTO(userCombo.getValue()) // Seçilen kullanıcı
                         .build();
             }
             return null;
@@ -1240,7 +1241,6 @@ public class AdminController {
         return result.orElse(null);
 
     }
-
 
     private void loadUsers() {
         UserDAO userDAO = new UserDAO();
