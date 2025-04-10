@@ -24,12 +24,12 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
     // 📥 Yeni Not Ekleme
     @Override
     public Optional<NotebookDTO> create(NotebookDTO notebookDTO) {
-        String sql = "INSERT INTO notebook_table (title, content, category, pinned, username) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO notebook_table (title, content, category, username, pinned) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, notebookDTO.getTitle());
             ps.setString(2, notebookDTO.getContent());
             ps.setString(3, notebookDTO.getCategory());
-            ps.setInt(5, notebookDTO.getUserDTO().getId());
+            ps.setInt(4, notebookDTO.getUserDTO().getId());
             ps.setBoolean(5, notebookDTO.getPinned());
 
             int affectedRows = ps.executeUpdate();
@@ -89,7 +89,7 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
                 ps.setString(1, updated.getTitle());
                 ps.setString(2, updated.getContent());
                 ps.setString(3, updated.getCategory());
-                ps.setInt(5, updated.getUserDTO().getId());
+                ps.setInt(4, updated.getUserDTO().getId());
                 ps.setBoolean(5, updated.getPinned());
                 ps.setInt(6, id);
 
