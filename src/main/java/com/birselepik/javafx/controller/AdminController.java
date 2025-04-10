@@ -8,6 +8,7 @@ import com.birselepik.javafx.dto.NotebookDTO;
 import com.birselepik.javafx.dto.UserDTO;
 import com.birselepik.javafx.utils.ERole;
 import com.birselepik.javafx.utils.FXMLPath;
+import com.birselepik.javafx.utils.LanguageManager;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -54,6 +55,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+
+import static com.birselepik.javafx.utils.LanguageManager.currentLocale;
+
 
 public class AdminController implements Initializable {
 
@@ -109,11 +113,14 @@ public class AdminController implements Initializable {
     @FXML private Button btnLanguage;
     @FXML private Button btnNotifications;
 
-    private Locale currentLocale = new Locale("tr"); // Başlangıçta Türkçe
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         updateLanguage();
+        refreshTable();
+        refreshKdvTable();
+        refreshNotebookTable();
     }
+
 
     @FXML
     private Label clockLabel;
@@ -173,7 +180,6 @@ public class AdminController implements Initializable {
         descColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
 
         searchKdvField.textProperty().addListener((obs, oldVal, newVal) -> applyKdvFilter());
-
         refreshKdvTable();
 
 
@@ -198,7 +204,6 @@ public class AdminController implements Initializable {
 
         searchNotebookField.textProperty().addListener((obs, oldVal, newVal) -> applyNotebookFilter());
         refreshNotebookTable();
-
     }
 
     // KULLANICI
@@ -236,6 +241,8 @@ public class AdminController implements Initializable {
     public void openKdvPane() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/birselepik/javafx/view/kdv.fxml"));
+            loader.setResources(LanguageManager.getBundle());
+
             Parent kdvRoot = loader.load();
             Stage stage = new Stage();
             stage.setTitle("KDV Paneli");
@@ -252,6 +259,8 @@ public class AdminController implements Initializable {
     public void openNotebookPane() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/birselepik/javafx/view/notebook.fxml"));
+            loader.setResources(LanguageManager.getBundle());
+
             Parent notebookRoot = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Not Paneli");
@@ -292,6 +301,8 @@ public class AdminController implements Initializable {
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLPath.LOGIN));
+                loader.setResources(LanguageManager.getBundle());
+
                 Parent root = loader.load();
                 Stage stage = (Stage) userTable.getScene().getWindow();
                 stage.setScene(new Scene(root));
@@ -663,10 +674,10 @@ public class AdminController implements Initializable {
     @FXML
     private void showAbout() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Hakkında");
-        alert.setHeaderText("Uygulama Bilgisi");
-        alert.setContentText("Bu uygulama JavaFX ile geliştirilmiştir.");
-        alert.showAndWait();
+        alert.setTitle(LanguageManager.get("alert.title.info"));
+        alert.setHeaderText(LanguageManager.get("alert.header.success"));
+        alert.setContentText(LanguageManager.get("alert.content.saved"));
+
     }
 
 
@@ -1105,25 +1116,21 @@ public class AdminController implements Initializable {
         // Tema değiştirme işlemleri burada yapılacak
     }
 
+
     // Uygulamanın dili değiştirilecek (TR/EN)
     @FXML
     private void languageTheme(ActionEvent event) {
-        // TR ↔ EN geçişi
-        if (currentLocale.getLanguage().equals("tr")) {
-            currentLocale = new Locale("en");
-        } else {
-            currentLocale = new Locale("tr");
-        }
+        String newLang = LanguageManager.getCurrentLocale().getLanguage().equals("tr") ? "en" : "tr";
+        LanguageManager.changeLanguage(newLang);
         updateLanguage();
     }
-
     private void updateLanguage() {
-        ResourceBundle bundle = ResourceBundle.getBundle("lang", currentLocale);
-        labelTitle.setText(bundle.getString("panel.title"));
-        btnDarkMode.setText(bundle.getString("button.darkMode"));
-        btnLanguage.setText(bundle.getString("button.language"));
-        btnNotifications.setText(bundle.getString("button.notifications"));
+        labelTitle.setText(LanguageManager.get("panel.title"));
+        btnDarkMode.setText(LanguageManager.get("button.darkMode"));
+        btnLanguage.setText(LanguageManager.get("button.language"));
+        btnNotifications.setText(LanguageManager.get("button.notifications"));
     }
+
 
     @FXML
     private void showNotifications(ActionEvent event) {
@@ -1210,6 +1217,12 @@ public class AdminController implements Initializable {
 
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION, "Silmek istiyor musunuz?", ButtonType.OK, ButtonType.CANCEL);
         confirm.setHeaderText("Title: " + selected.getTitle());
+       /* Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle(LanguageManager.get("dialog.title.confirm"));
+        confirm.setHeaderText(LanguageManager.get("dialog.header.delete"));
+        confirm.setContentText(LanguageManager.get("dialog.content.areYouSure"));*/
+
+
         Optional<ButtonType> result = confirm.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             notebookDAO.delete(selected.getId());
@@ -1223,6 +1236,7 @@ public class AdminController implements Initializable {
     private NotebookDTO openNotebookForm(NotebookDTO existing) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/birselepik/javafx/view/notebook.fxml"));
+            loader.setResources(LanguageManager.getBundle());
             Parent root = loader.load();
 
             NotebookController controller = loader.getController();

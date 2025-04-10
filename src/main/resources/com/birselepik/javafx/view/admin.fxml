@@ -66,11 +66,11 @@
 
                 <TableView fx:id="userTable" prefHeight="300" style="-fx-border-color: #bdc3c7; -fx-background-radius: 10;">
                     <columns>
-                        <TableColumn fx:id="idColumn" text="ID" prefWidth="40" />
-                        <TableColumn fx:id="usernameColumn" text="Kullanıcı Adı" prefWidth="150" />
-                        <TableColumn fx:id="emailColumn" text="E-Posta" prefWidth="180" />
-                        <TableColumn fx:id="passwordColumn" text="Şifre" prefWidth="100" />
-                        <TableColumn fx:id="roleColumn" text="Rol" prefWidth="80" />
+                        <TableColumn fx:id="idColumn" text="%ID" prefWidth="40" />
+                        <TableColumn fx:id="usernameColumn" text="%username" prefWidth="150" />
+                        <TableColumn fx:id="emailColumn" text="%email" prefWidth="180" />
+                        <TableColumn fx:id="passwordColumn" text="%password" prefWidth="100" />
+                        <TableColumn fx:id="roleColumn" text="%role" prefWidth="80" />
                     </columns>
                 </TableView>
 
@@ -94,14 +94,14 @@
 
                 <TableView fx:id="kdvTable" prefHeight="300" style="-fx-border-color: #bdc3c7; -fx-background-radius: 10;">
                     <columns>
-                        <TableColumn fx:id="idColumnKdv" text="ID" prefWidth="40" />
-                        <TableColumn fx:id="amountColumn" text="Tutar" prefWidth="80" />
-                        <TableColumn fx:id="kdvRateColumn" text="KDV (%)" prefWidth="80" />
-                        <TableColumn fx:id="kdvAmountColumn" text="KDV Tutarı" prefWidth="90" />
-                        <TableColumn fx:id="totalAmountColumn" text="Toplam" prefWidth="90" />
-                        <TableColumn fx:id="receiptColumn" text="Fiş No" prefWidth="90" />
-                        <TableColumn fx:id="dateColumn" text="Tarih" prefWidth="100" />
-                        <TableColumn fx:id="descColumn" text="Açıklama" prefWidth="150" />
+                        <TableColumn fx:id="idColumnKdv" text="%ID" prefWidth="40" />
+                        <TableColumn fx:id="amountColumn" text="%amount" prefWidth="80" />
+                        <TableColumn fx:id="kdvRateColumn" text="%kdvRate" prefWidth="80" />
+                        <TableColumn fx:id="kdvAmountColumn" text="%kdvAmount" prefWidth="90" />
+                        <TableColumn fx:id="totalAmountColumn" text="%totalAmount" prefWidth="90" />
+                        <TableColumn fx:id="receiptColumn" text="%receipt" prefWidth="90" />
+                        <TableColumn fx:id="dateColumn" text="%date" prefWidth="100" />
+                        <TableColumn fx:id="descColumn" text="%desc" prefWidth="150" />
                     </columns>
                 </TableView>
 
@@ -137,12 +137,12 @@
 
             <TableView fx:id="notebookTable" prefHeight="300" style="-fx-border-color: #bdc3c7; -fx-background-radius: 10;">
                 <columns>
-                    <TableColumn fx:id="idColumnNotebook" text="ID" prefWidth="40" />
-                    <TableColumn fx:id="titleColumn" text="Başlık" prefWidth="80" />
-                    <TableColumn fx:id="contentColumn" text="İçerik" prefWidth="80" />
-                    <TableColumn fx:id="categoryColumn" text="Kategori" prefWidth="90" />
-                    <TableColumn fx:id="userDTOColumn" text="Kullanıcı" prefWidth="100" />
-                    <TableColumn fx:id="pinnedColumn" text="Sabitlenmiş" prefWidth="50" />
+                    <TableColumn fx:id="idColumnNotebook" text="%ID" prefWidth="40" />
+                    <TableColumn fx:id="titleColumn" text="%title" prefWidth="80" />
+                    <TableColumn fx:id="contentColumn" text="%content" prefWidth="80" />
+                    <TableColumn fx:id="categoryColumn" text="%category" prefWidth="90" />
+                    <TableColumn fx:id="userDTOColumn" text="%userDTO" prefWidth="100" />
+                    <TableColumn fx:id="pinnedColumn" text="%pinned" prefWidth="50" />
                 </columns>
             </TableView>
 

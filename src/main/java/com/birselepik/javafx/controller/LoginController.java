@@ -2,10 +2,7 @@ package com.birselepik.javafx.controller;
 
 import com.birselepik.javafx.dao.UserDAO;
 import com.birselepik.javafx.dto.UserDTO;
-import com.birselepik.javafx.utils.ERole;
-import com.birselepik.javafx.utils.FXMLPath;
-import com.birselepik.javafx.utils.SceneHelper;
-import com.birselepik.javafx.utils.SpecialColor;
+import com.birselepik.javafx.utils.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -90,6 +87,8 @@ public class LoginController {
     private void openAdminPane() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath.ADMIN));
+            fxmlLoader.setResources(LanguageManager.getBundle());
+
             Parent parent = fxmlLoader.load();
 
             Stage stage = (Stage) usernameField.getScene().getWindow();
