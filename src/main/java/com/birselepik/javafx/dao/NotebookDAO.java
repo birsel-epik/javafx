@@ -153,6 +153,7 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
     public NotebookDTO mapToObjectDTO(ResultSet rs) throws SQLException {
         String username = rs.getString("username");
 
+
         // username ile UserDTO'yu al
         UserDAO userDAO = new UserDAO();
         UserDTO userDTO = userDAO.findByName(username).orElse(null);

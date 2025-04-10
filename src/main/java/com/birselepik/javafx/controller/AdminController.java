@@ -98,6 +98,7 @@ public class AdminController {
     @FXML private TableColumn<NotebookDTO, String> titleColumn;
     @FXML private TableColumn<NotebookDTO, String> contentColumn;
     @FXML private TableColumn<NotebookDTO, String> categoryColumn;
+    //@FXML private TableColumn<NotebookDTO, String> userDTOColumn;
     @FXML private TableColumn<NotebookDTO, String> userDTOColumn;
     @FXML private TableColumn<NotebookDTO, String> pinnedColumn;
     @FXML private TextField searchNotebookField;
@@ -173,10 +174,16 @@ public class AdminController {
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
 
+        userDTOColumn.setCellValueFactory(cellData -> {
+            UserDTO user = cellData.getValue().getUsername();
+            return new SimpleStringProperty(user != null ? user.getUsername() : "");
+        });
+
         pinnedColumn.setCellValueFactory(cellData -> {
             boolean pinnedValue = cellData.getValue().getPinned();
             return new SimpleStringProperty(pinnedValue ? "Evet" : "Hayır");
         });
+
 
         searchNotebookField.textProperty().addListener((obs, oldVal, newVal) -> applyNotebookFilter());
         refreshNotebookTable();

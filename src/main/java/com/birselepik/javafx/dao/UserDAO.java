@@ -69,7 +69,7 @@ public class UserDAO implements IDaoImplements<UserDTO>, ILogin<UserDTO> {
     }
 
     public Optional<UserDTO> findByName(String username) {
-        String sql = "SELECT * FROM user_table WHERE username = ?";
+        String sql = "SELECT * FROM usertable WHERE username = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, username);
             try (ResultSet rs = ps.executeQuery()) {
@@ -77,6 +77,8 @@ public class UserDAO implements IDaoImplements<UserDTO>, ILogin<UserDTO> {
                     UserDTO user = new UserDTO();
                     user.setId(rs.getInt("id"));
                     user.setUsername(rs.getString("username"));
+                    user.setEmail(rs.getString("email"));
+                    user.setPassword(rs.getString("password"));
                     return Optional.of(user);
                 }
             }

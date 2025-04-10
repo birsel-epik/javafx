@@ -19,3 +19,246 @@ SELECT * FROM user_table WHERE username = ? [42102-224]
 2025-04-10 21:00:11.977488+03:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
 SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:01:14.347703+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:01:14.349483+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:01:14.350383+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:09:09.752437+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:09:09.759206+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:09:09.760758+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:09:25.063827+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:09:25.068458+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:09:25.069983+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:09:25.071491+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:09:36.890120+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:09:36.890764+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:09:36.891160+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:09:36.891523+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:09:47.890710+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:09:47.892034+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:09:47.892646+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:09:47.893234+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:09:47.893836+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:11:36.266094+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:11:36.268073+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:11:36.269252+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:11:36.269987+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:11:36.270654+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:11:36.271379+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:12:05.364318+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:12:05.367268+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:12:05.368056+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:12:05.368745+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:12:05.369411+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:12:05.370040+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:12:05.370636+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:12:52.612067+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:12:52.614520+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:12:52.615312+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:12:52.616043+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:12:52.616846+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:12:52.617517+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:12:52.618187+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:23:01.146209+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:23:01.153301+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:23:01.154795+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:23:01.156078+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:23:01.157232+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:23:01.158337+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:23:01.159355+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:23:10.476109+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:23:10.477497+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:23:10.478449+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:23:10.479259+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:23:10.479897+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:23:10.480566+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:23:10.481175+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:23:10.481758+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:24:28.169879+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:24:28.174907+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:24:28.175916+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:24:28.176678+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:24:28.177369+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:24:28.178059+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:24:28.178775+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:24:28.179528+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:24:28.180251+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:24:40.050312+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:24:40.052934+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:24:40.053904+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:24:40.054492+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:24:40.055341+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:24:40.056400+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:24:40.057372+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:24:40.058077+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:24:40.058793+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:27:15.022754+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:27:15.026059+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:27:15.027315+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:27:15.028325+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:27:15.029132+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:27:15.029865+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:27:15.030633+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:27:15.031396+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-10 21:27:15.032142+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
+SELECT * FROM user_table WHERE username = ? [42102-224]

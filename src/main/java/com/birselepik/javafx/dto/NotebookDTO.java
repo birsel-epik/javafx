@@ -27,6 +27,7 @@ public class NotebookDTO {
     // 📌 Sabitlenmiş not mu?
     private Boolean pinned;
 
+
     // 👤 Kullanıcı bilgileri (Composition)
     private UserDTO username;
 
