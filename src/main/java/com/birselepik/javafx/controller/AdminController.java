@@ -18,6 +18,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.print.Printer;
 import javafx.print.PrinterJob;
@@ -45,17 +46,16 @@ import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Optional;
-import java.util.Properties;
+import java.util.*;
 
-public class AdminController {
+public class AdminController implements Initializable {
 
     private UserDAO userDAO;
     private KdvDAO kdvDAO;
@@ -98,11 +98,22 @@ public class AdminController {
     @FXML private TableColumn<NotebookDTO, String> titleColumn;
     @FXML private TableColumn<NotebookDTO, String> contentColumn;
     @FXML private TableColumn<NotebookDTO, String> categoryColumn;
-    //@FXML private TableColumn<NotebookDTO, String> userDTOColumn;
     @FXML private TableColumn<NotebookDTO, String> userDTOColumn;
     @FXML private TableColumn<NotebookDTO, String> pinnedColumn;
     @FXML private TextField searchNotebookField;
 
+
+    // Language (TR - EN) - ResourceBundle
+    @FXML private Label labelTitle;
+    @FXML private Button btnDarkMode;
+    @FXML private Button btnLanguage;
+    @FXML private Button btnNotifications;
+
+    private Locale currentLocale = new Locale("tr"); // Başlangıçta Türkçe
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        updateLanguage();
+    }
 
     @FXML
     private Label clockLabel;
@@ -187,6 +198,7 @@ public class AdminController {
 
         searchNotebookField.textProperty().addListener((obs, oldVal, newVal) -> applyNotebookFilter());
         refreshNotebookTable();
+
     }
 
     // KULLANICI
@@ -1093,9 +1105,24 @@ public class AdminController {
         // Tema değiştirme işlemleri burada yapılacak
     }
 
+    // Uygulamanın dili değiştirilecek (TR/EN)
     @FXML
     private void languageTheme(ActionEvent event) {
-        // Uygulamanın dili değiştirilecek (TR/EN vs.)
+        // TR ↔ EN geçişi
+        if (currentLocale.getLanguage().equals("tr")) {
+            currentLocale = new Locale("en");
+        } else {
+            currentLocale = new Locale("tr");
+        }
+        updateLanguage();
+    }
+
+    private void updateLanguage() {
+        ResourceBundle bundle = ResourceBundle.getBundle("lang", currentLocale);
+        labelTitle.setText(bundle.getString("panel.title"));
+        btnDarkMode.setText(bundle.getString("button.darkMode"));
+        btnLanguage.setText(bundle.getString("button.language"));
+        btnNotifications.setText(bundle.getString("button.notifications"));
     }
 
     @FXML
