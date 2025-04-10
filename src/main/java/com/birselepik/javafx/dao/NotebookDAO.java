@@ -24,12 +24,12 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
     // 📥 Yeni Not Ekleme
     @Override
     public Optional<NotebookDTO> create(NotebookDTO notebookDTO) {
-        String sql = "INSERT INTO notebook_table (title, content, category, pinned, user_id) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO notebook_table (title, content, category, pinned, username) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, notebookDTO.getTitle());
             ps.setString(2, notebookDTO.getContent());
             ps.setString(3, notebookDTO.getCategory());
-            ps.setInt(4, notebookDTO.getUserDTO().getId());
+            ps.setInt(5, notebookDTO.getUserDTO().getId());
             ps.setBoolean(5, notebookDTO.getPinned());
 
             int affectedRows = ps.executeUpdate();
@@ -84,12 +84,12 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
     public Optional<NotebookDTO> update(int id, NotebookDTO updated) {
         Optional<NotebookDTO> existing = findById(id);
         if (existing.isPresent()) {
-            String sql = "UPDATE notebook_table SET title=?, content=?, category=?, user_id=?, pinned=? WHERE id=?";
+            String sql = "UPDATE notebook_table SET title=?, content=?, category=?, username=?, pinned=? WHERE id=?";
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, updated.getTitle());
                 ps.setString(2, updated.getContent());
                 ps.setString(3, updated.getCategory());
-                ps.setInt(4, updated.getUserDTO().getId());
+                ps.setInt(5, updated.getUserDTO().getId());
                 ps.setBoolean(5, updated.getPinned());
                 ps.setInt(6, id);
 

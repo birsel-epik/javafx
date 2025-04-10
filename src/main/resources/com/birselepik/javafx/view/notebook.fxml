@@ -23,7 +23,7 @@
                 <TableColumn fx:id="titleColumn" text="Başlık" />
                 <TableColumn fx:id="contentColumn" text="İçerik" />
                 <TableColumn fx:id="categoryColumn" text="Kategori" />
-                <TableColumn fx:id="userColumn" text="Kullanıcı" />
+                <TableColumn fx:id="userDTOColumn" text="Kullanıcı" />
                 <TableColumn fx:id="pinnedColumn" text="Sabitlenmiş" />
             </columns>
         </TableView>

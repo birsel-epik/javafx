@@ -99,7 +99,7 @@ public class AdminController {
     @FXML private TableColumn<NotebookDTO, String> contentColumn;
     @FXML private TableColumn<NotebookDTO, String> categoryColumn;
     //@FXML private TableColumn<NotebookDTO, String> userDTOColumn;
-    @FXML private ComboBox<UserDTO> userComboBox;
+    @FXML private ComboBox<UserDTO> userField;
     @FXML private TableColumn<NotebookDTO, String> pinnedColumn;
     @FXML private TextField searchNotebookField;
 
@@ -172,11 +172,20 @@ public class AdminController {
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         contentColumn.setCellValueFactory(new PropertyValueFactory<>("content"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
-        //userDTOColumn.setCellValueFactory(new PropertyValueFactory<>("userDTO"));
-        usernameColumn.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getUserDTO() != null ?
-                        cellData.getValue().getUserDTO().getUsername() : "N/A")
-        );
+        userField.setCellFactory(cb -> new ListCell<>() {
+            @Override
+            protected void updateItem(UserDTO user, boolean empty) {
+                super.updateItem(user, empty);
+                setText(empty || user == null ? null : user.getUsername());
+            }
+        });
+        userField.setButtonCell(new ListCell<>() {
+            @Override
+            protected void updateItem(UserDTO user, boolean empty) {
+                super.updateItem(user, empty);
+                setText(empty || user == null ? null : user.getUsername());
+            }
+        });
 
         pinnedColumn.setCellValueFactory(cellData -> {
             boolean pinnedValue = cellData.getValue().getPinned();
@@ -1188,22 +1197,41 @@ public class AdminController {
         Dialog<NotebookDTO> dialog = new Dialog<>();
         dialog.setTitle(existing == null ? "Yeni Not Ekle" : "Not Güncelle");
 
+        // Form alanları
         TextField titleField = new TextField();
         TextArea contentField = new TextArea();
-        CheckBox pinnedField = new CheckBox();
         ComboBox<String> categoryField = new ComboBox<>();
         categoryField.getItems().addAll("Kişisel", "İş", "Okul");
         categoryField.setValue("Kişisel");
+        CheckBox pinnedField = new CheckBox();
 
         ComboBox<UserDTO> userField = new ComboBox<>();
-        loadUsers(); // Kullanıcıları yükle
-        userField.setOnAction(event -> {
-            UserDTO selectedUser = userField.getValue();
-            if (selectedUser != null) {
-                System.out.println("Seçilen Kullanıcı: " + selectedUser.getUsername());
+        userField.setPromptText("Kullanıcı Seçin");
+
+        // Kullanıcıları yükle
+        Optional<List<UserDTO>> users = userDAO.list();
+        users.ifPresent(userList -> {
+            ObservableList<UserDTO> userObservable = FXCollections.observableArrayList(userList);
+            userField.setItems(userObservable);
+        });
+
+        // Kullanıcı adını görüntülemek için CellFactory
+        userField.setCellFactory(cb -> new ListCell<>() {
+            @Override
+            protected void updateItem(UserDTO user, boolean empty) {
+                super.updateItem(user, empty);
+                setText(empty || user == null ? null : user.getUsername());
+            }
+        });
+        userField.setButtonCell(new ListCell<>() {
+            @Override
+            protected void updateItem(UserDTO user, boolean empty) {
+                super.updateItem(user, empty);
+                setText(empty || user == null ? null : user.getUsername());
             }
         });
 
+        // Mevcut verileri göster (güncelleme için)
         if (existing != null) {
             titleField.setText(existing.getTitle());
             contentField.setText(existing.getContent());
@@ -1212,17 +1240,22 @@ public class AdminController {
             userField.setValue(existing.getUserDTO());
         }
 
-
+        // Form düzeni
         GridPane grid = new GridPane();
         grid.setHgap(10); grid.setVgap(10);
         grid.addRow(0, new Label("Başlık:"), titleField);
         grid.addRow(1, new Label("İçerik:"), contentField);
         grid.addRow(2, new Label("Kategori:"), categoryField);
-        grid.addRow(4, new Label("Kullanıcı:"), userField);
         grid.addRow(3, new Label("Sabitle:"), pinnedField);
+        grid.addRow(4, new Label("Kullanıcı:"), userField);
 
         dialog.getDialogPane().setContent(grid);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+        if (userField.getValue() == null) {
+            showAlert("Hata", "Lütfen bir kullanıcı seçin.", Alert.AlertType.ERROR);
+            return null;
+        }
 
         dialog.setResultConverter(btn -> {
             if (btn == ButtonType.OK) {
@@ -1230,8 +1263,8 @@ public class AdminController {
                         .title(titleField.getText())
                         .content(contentField.getText())
                         .category(categoryField.getValue())
-                        .userDTO(userField.getValue()) // Seçilen kullanıcı
                         .pinned(pinnedField.isSelected())
+                        .userDTO(userField.getValue()) // seçilen kullanıcı burada
                         .build();
             }
             return null;
@@ -1239,13 +1272,14 @@ public class AdminController {
 
         Optional<NotebookDTO> result = dialog.showAndWait();
         return result.orElse(null);
-
     }
+
 
     private void loadUsers() {
-        UserDAO userDAO = new UserDAO();
-        Optional<List<UserDTO>> users = userDAO.list();
-        users.ifPresent(userList -> userComboBox.setItems(FXCollections.observableArrayList(userList)));
+        Optional<List<UserDTO>> usersOpt = userDAO.list(); // userDAO.list() metodu olmalı
+        if (usersOpt.isPresent()) {
+            ObservableList<UserDTO> users = FXCollections.observableArrayList(usersOpt.get());
+            userField.setItems(users);
+        }
     }
-
 }
