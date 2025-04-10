@@ -1118,12 +1118,42 @@ public class AdminController implements Initializable {
 
 
     // Uygulamanın dili değiştirilecek (TR/EN)
+/* @FXML
+  private void languageTheme(ActionEvent event) {
+        String newLang = LanguageManager.getCurrentLocale().getLanguage().equals("tr") ? "en" : "tr";
+        LanguageManager.changeLanguage(newLang);
+        updateLanguage();
+        refreshTable();
+        refreshKdvTable();
+        refreshNotebookTable();
+    }*/
+
     @FXML
     private void languageTheme(ActionEvent event) {
         String newLang = LanguageManager.getCurrentLocale().getLanguage().equals("tr") ? "en" : "tr";
         LanguageManager.changeLanguage(newLang);
-        updateLanguage();
+
+        try {
+            URL fxmlLocation = getClass().getResource("/com/birselepik/javafx/view/Admin.fxml");
+            if (fxmlLocation == null) {
+                throw new IOException("FXML dosyası bulunamadı!");
+            }
+
+            FXMLLoader loader = new FXMLLoader(fxmlLocation);
+            loader.setResources(ResourceBundle.getBundle("lang", LanguageManager.getCurrentLocale()));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) btnLanguage.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+
     private void updateLanguage() {
         labelTitle.setText(LanguageManager.get("panel.title"));
         btnDarkMode.setText(LanguageManager.get("button.darkMode"));
