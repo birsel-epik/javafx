@@ -1,41 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.birselepik.javafx.controller.NotebookController">
+<?import javafx.scene.layout.*?>
 
-    <!-- Şu anda burası kullanılmıyor !!! -->
-    <!-- ÜST: Arama ve Filtre -->
-    <top>
-        <HBox spacing="10" padding="10">
-            <Label text="Ara (Başlık):" />
-            <TextField fx:id="searchNotebookField" promptText="Başlık giriniz..." />
-            <Button text="Filtreyi Temizle" onAction="#clearNotebookFilters" />
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.birselepik.javafx.controller.NotebookController" prefWidth="400" prefHeight="450">
+    <VBox spacing="10" alignment="TOP_LEFT" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+
+        <Label text="Başlık:" />
+        <TextField fx:id="titleField" promptText="Not başlığı girin..." />
+
+        <Label text="İçerik:" />
+        <TextArea fx:id="contentField" promptText="Not içeriğini yazın..." prefRowCount="5" />
+
+        <Label text="Kategori:" />
+        <ComboBox fx:id="categoryField" />
+
+        <Label text="Sabitle:" />
+        <CheckBox fx:id="pinnedField" />
+
+        <Label text="Kullanıcı Seçimi:" />
+        <ComboBox fx:id="userField" />
+
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Button text="Kaydet" fx:id="saveButton" onAction="#handleSave" />
+            <Button text="Vazgeç" onAction="#handleCancel" />
         </HBox>
-    </top>
-
-    <!-- ORTA: Tablo -->
-    <center>
-        <TableView fx:id="notebookTable">
-            <columns>
-                <TableColumn fx:id="idColumnNotebook" text="ID" />
-                <TableColumn fx:id="createdDateColumn" text="Tarih" />
-                <TableColumn fx:id="titleColumn" text="Başlık" />
-                <TableColumn fx:id="contentColumn" text="İçerik" />
-                <TableColumn fx:id="categoryColumn" text="Kategori" />
-                <TableColumn fx:id="userDTOColumn" text="Kullanıcı" />
-                <TableColumn fx:id="pinnedColumn" text="Sabitlenmiş" />
-            </columns>
-        </TableView>
-    </center>
-
-    <!-- ALT: Butonlar -->
-    <bottom>
-        <HBox spacing="10" padding="10" alignment="CENTER_RIGHT">
-            <Button text="Not Ekle" onAction="#addNotebook" />
-            <Button text="Güncelle" onAction="#updateNotebook" />
-            <Button text="Sil" onAction="#deleteNotebook" />
-        </HBox>
-    </bottom>
-
-</BorderPane>
+    </VBox>
+</AnchorPane>
