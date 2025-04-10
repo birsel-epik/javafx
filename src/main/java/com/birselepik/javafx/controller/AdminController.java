@@ -112,15 +112,19 @@ public class AdminController implements Initializable {
     @FXML private Button btnDarkMode;
     @FXML private Button btnLanguage;
     @FXML private Button btnNotifications;
+    @FXML private Button btnBackup;
+    @FXML private Button btnRestore;
+    @FXML private Button btnNotebook;
+    @FXML private Button btnProfile;
+    @FXML private Button btnLogout;
+    @FXML private Button labelUserManagement;
+    @FXML private Button labelTaxCalculation;
+    @FXML private Button labelNotes;
+    @FXML private Button btnAdd;
+    @FXML private Button btnUpdate;
+    @FXML private Button btnDelete;
+    @FXML private Button btnPrint;
 
- /*   @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        updateLanguage();
-        refreshTable();
-        refreshKdvTable();
-        refreshNotebookTable();
-    }
-*/
 
     @FXML
     private Label clockLabel;
@@ -244,7 +248,6 @@ public class AdminController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/birselepik/javafx/view/kdv.fxml"));
             loader.setResources(ResourceBundle.getBundle("lang", currentLocale));
-            //loader.setResources(LanguageManager.getBundle());
 
             Parent kdvRoot = loader.load();
             Stage stage = new Stage();
@@ -263,7 +266,6 @@ public class AdminController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/birselepik/javafx/view/notebook.fxml"));
             loader.setResources(ResourceBundle.getBundle("lang", currentLocale));
-//loader.setResources(LanguageManager.getBundle());
 
             Parent notebookRoot = loader.load();
             Stage stage = new Stage();
@@ -305,7 +307,6 @@ public class AdminController implements Initializable {
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLPath.LOGIN));
-                //loader.setResources(LanguageManager.getBundle());
                 loader.setResources(ResourceBundle.getBundle("lang", currentLocale));
 
                 Parent root = loader.load();
@@ -1135,7 +1136,6 @@ public class AdminController implements Initializable {
             }
 
             FXMLLoader loader = new FXMLLoader(fxmlLocation);
-            //loader.setResources(ResourceBundle.getBundle("lang", LanguageManager.getCurrentLocale()));
             loader.setResources(ResourceBundle.getBundle("lang", currentLocale));
             Parent root = loader.load();
 
@@ -1155,6 +1155,21 @@ public class AdminController implements Initializable {
         btnDarkMode.setText(LanguageManager.get("button.darkMode"));
         btnLanguage.setText(LanguageManager.get("button.language"));
         btnNotifications.setText(LanguageManager.get("button.notifications"));
+
+        btnBackup.setText(LanguageManager.get("button.backup"));
+        btnRestore.setText(LanguageManager.get("button.restore"));
+        btnNotebook.setText(LanguageManager.get("button.notebook"));
+        btnProfile.setText(LanguageManager.get("button.profile"));
+        btnLogout.setText(LanguageManager.get("button.logout"));
+
+        labelUserManagement.setText(LanguageManager.get("panel.userManagement"));
+        labelTaxCalculation.setText(LanguageManager.get("panel.taxCalculation"));
+        labelNotes.setText(LanguageManager.get("panel.notes"));
+
+        btnAdd.setText(LanguageManager.get("button.add"));
+        btnUpdate.setText(LanguageManager.get("button.update"));
+        btnDelete.setText(LanguageManager.get("button.delete"));
+        btnPrint.setText(LanguageManager.get("button.print"));
     }
 
 
@@ -1262,7 +1277,6 @@ public class AdminController implements Initializable {
     private NotebookDTO openNotebookForm(NotebookDTO existing) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/birselepik/javafx/view/notebook.fxml"));
-            //loader.setResources(LanguageManager.getBundle());
             loader.setResources(ResourceBundle.getBundle("lang", currentLocale));
             Parent root = loader.load();
 
