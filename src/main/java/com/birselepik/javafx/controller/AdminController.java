@@ -98,7 +98,7 @@ public class AdminController {
     @FXML private TableColumn<NotebookDTO, String> titleColumn;
     @FXML private TableColumn<NotebookDTO, String> contentColumn;
     @FXML private TableColumn<NotebookDTO, String> categoryColumn;
-    //@FXML private TableColumn<NotebookDTO, String> userDTOColumn;
+    @FXML private TableColumn<NotebookDTO, String> userDTOColumn;
     @FXML private TableColumn<NotebookDTO, String> pinnedColumn;
     @FXML private TextField searchNotebookField;
 
@@ -1116,7 +1116,6 @@ public class AdminController {
         Optional<List<NotebookDTO>> list = notebookDAO.list();
         list.ifPresent(data -> notebookTable.setItems(FXCollections.observableArrayList(data)));
     }
-
 
     // 🔎 Arama filtreleme
     private void applyNotebookFilter() {

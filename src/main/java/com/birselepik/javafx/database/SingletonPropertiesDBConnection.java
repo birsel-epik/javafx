@@ -50,7 +50,7 @@ public class SingletonPropertiesDBConnection {
             Properties properties = new Properties();
             properties.load(fis);
 
-            URL = properties.getProperty("db.url", "jdbc:h2:./h2db/user_management");
+            URL = properties.getProperty("db.url", "jdbc:h2:./h2db/user_management"); //jdbc:h2:~/test
             USERNAME = properties.getProperty("db.username", "sa");
             PASSWORD = properties.getProperty("db.password", "");
         } catch (IOException e) {

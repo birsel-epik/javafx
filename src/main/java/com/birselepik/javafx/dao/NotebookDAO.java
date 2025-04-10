@@ -29,14 +29,17 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
             ps.setString(1, notebookDTO.getTitle());
             ps.setString(2, notebookDTO.getContent());
             ps.setString(3, notebookDTO.getCategory());
-            ps.setInt(4, notebookDTO.getUserDTO().getId());
+            ps.setString(4, notebookDTO.getUserDTO().getUsername());
             ps.setBoolean(5, notebookDTO.getPinned());
 
             int affectedRows = ps.executeUpdate();
+            System.out.println("Etkilenen satır sayısı: " + affectedRows);
+
             if (affectedRows > 0) {
                 try (ResultSet rs = ps.getGeneratedKeys()) {
                     if (rs.next()) {
                         notebookDTO.setId(rs.getInt(1));
+                        System.out.println("Yeni not eklendi. ID: " + notebookDTO.getId());
                         return Optional.of(notebookDTO);
                     }
                 }
@@ -89,7 +92,7 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
                 ps.setString(1, updated.getTitle());
                 ps.setString(2, updated.getContent());
                 ps.setString(3, updated.getCategory());
-                ps.setInt(4, updated.getUserDTO().getId());
+                ps.setString(4, updated.getUserDTO().getUsername());
                 ps.setBoolean(5, updated.getPinned());
                 ps.setInt(6, id);
 
