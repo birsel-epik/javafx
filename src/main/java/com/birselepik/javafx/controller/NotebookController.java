@@ -68,7 +68,7 @@ public class NotebookController {
             contentField.setText(notebookDTO.getContent());
             categoryField.setValue(notebookDTO.getCategory());
             pinnedField.setSelected(notebookDTO.getPinned());
-            userField.setValue(notebookDTO.getUserDTO());
+            userField.setValue(notebookDTO.getUsername());
         }
     }
 
@@ -81,8 +81,9 @@ public class NotebookController {
         String title = titleField.getText().trim();
         String content = contentField.getText().trim();
         String category = categoryField.getValue();
-        boolean pinned = pinnedField.isSelected();
+        Boolean pinned = pinnedField.isSelected();
         UserDTO selectedUser = userField.getValue();
+        System.out.println("Seçilen kullanıcı: " + selectedUser);
 
         if (title.isEmpty() || category == null || selectedUser == null) {
             showAlert("Hata", "Başlık, kategori ve kullanıcı seçilmelidir.", Alert.AlertType.ERROR);
@@ -97,7 +98,7 @@ public class NotebookController {
         notebookDTO.setContent(content);
         notebookDTO.setCategory(category);
         notebookDTO.setPinned(pinned);
-        notebookDTO.setUserDTO(selectedUser);
+        notebookDTO.setUsername(selectedUser);
 
         saved = true;
         closeWindow();

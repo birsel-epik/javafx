@@ -28,7 +28,7 @@ public class NotebookDTO {
     private Boolean pinned;
 
     // 👤 Kullanıcı bilgileri (Composition)
-    private UserDTO userDTO;
+    private UserDTO username;
 
 
     // ✅ Geçerlilik kontrolü
@@ -39,13 +39,13 @@ public class NotebookDTO {
 
     // Parametresiz Constructor
     // Parametreli Constructor
-    public NotebookDTO(Integer id, String title, String content, String category, Boolean pinned, UserDTO userDTO) {
+    public NotebookDTO(Integer id, String title, String content, String category, Boolean pinned, UserDTO username) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.category = category;
         this.pinned = pinned;
-        this.userDTO = userDTO;
+        this.username = username;
     }
 
     // Getter and Setter

@@ -68,11 +68,24 @@ public class UserDAO implements IDaoImplements<UserDTO>, ILogin<UserDTO> {
         return Optional.empty();
     }
 
-    @Override
-    public Optional<UserDTO> findByName(String name) {
-        String sql = "SELECT * FROM usertable WHERE email=?";
-        return selectSingle(sql, name);
+    public Optional<UserDTO> findByName(String username) {
+        String sql = "SELECT * FROM user_table WHERE username = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, username);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    UserDTO user = new UserDTO();
+                    user.setId(rs.getInt("id"));
+                    user.setUsername(rs.getString("username"));
+                    return Optional.of(user);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Optional.empty();
     }
+
 
     @Override
     public Optional<UserDTO> findById(int id) {

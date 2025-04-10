@@ -171,6 +171,7 @@ public class AdminController {
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         contentColumn.setCellValueFactory(new PropertyValueFactory<>("content"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
+        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
 
         pinnedColumn.setCellValueFactory(cellData -> {
             boolean pinnedValue = cellData.getValue().getPinned();
@@ -1114,8 +1115,16 @@ public class AdminController {
     // 📄 Listeyi yenile
     private void refreshNotebookTable() {
         Optional<List<NotebookDTO>> list = notebookDAO.list();
-        list.ifPresent(data -> notebookTable.setItems(FXCollections.observableArrayList(data)));
+
+        if (list.isPresent()) {
+            List<NotebookDTO> data = list.get();
+            System.out.println("Veritabanından gelen not sayısı: " + data.size());
+            notebookTable.setItems(FXCollections.observableArrayList(data));
+        } else {
+            System.out.println("Veritabanından not listesi alınamadı.");
+        }
     }
+
 
     // 🔎 Arama filtreleme
     private void applyNotebookFilter() {

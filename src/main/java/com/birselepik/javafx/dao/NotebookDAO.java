@@ -23,14 +23,16 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
 
     // 📥 Yeni Not Ekleme
     @Override
+
     public Optional<NotebookDTO> create(NotebookDTO notebookDTO) {
-        String sql = "INSERT INTO notebook_table (title, content, category, username, pinned) VALUES (?, ?, ?, ?, ?)";
+
+        String sql = "INSERT INTO notebook_table (title, content, category, pinned, username) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, notebookDTO.getTitle());
             ps.setString(2, notebookDTO.getContent());
             ps.setString(3, notebookDTO.getCategory());
-            ps.setString(4, notebookDTO.getUserDTO().getUsername());
-            ps.setBoolean(5, notebookDTO.getPinned());
+            ps.setBoolean(4, notebookDTO.getPinned());
+            ps.setString(5, notebookDTO.getUsername().getUsername());
 
             int affectedRows = ps.executeUpdate();
             System.out.println("Etkilenen satır sayısı: " + affectedRows);
@@ -54,19 +56,38 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
     // 📄 Tüm Notları Listeleme
     @Override
     public Optional<List<NotebookDTO>> list() {
-        List<NotebookDTO> list = new ArrayList<>();
-        String sql = "SELECT * FROM notebook_table ORDER BY id DESC";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ResultSet rs = ps.executeQuery();
+        List<NotebookDTO> notes = new ArrayList<>();
+        String sql = "SELECT * FROM notebook_table";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            UserDAO userDAO = new UserDAO();
+
             while (rs.next()) {
-                list.add(mapToObjectDTO(rs));
+                NotebookDTO dto = new NotebookDTO();
+                dto.setId(rs.getInt("id"));
+                dto.setTitle(rs.getString("title"));
+                dto.setContent(rs.getString("content"));
+                dto.setCategory(rs.getString("category"));
+                dto.setPinned(rs.getBoolean("pinned"));
+
+                String username = rs.getString("username");
+                Optional<UserDTO> userOpt = userDAO.findByName(username);
+                userOpt.ifPresent(dto::setUsername);
+
+                notes.add(dto);
+                System.out.println("Veritabanından gelen username: " + username);
+
             }
-            return list.isEmpty() ? Optional.empty() : Optional.of(list);
-        } catch (Exception e) {
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        return Optional.empty();
+
+        return Optional.of(notes);
     }
+
 
     // 📄 ID ile Not bulma
     @Override
@@ -87,13 +108,13 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
     public Optional<NotebookDTO> update(int id, NotebookDTO updated) {
         Optional<NotebookDTO> existing = findById(id);
         if (existing.isPresent()) {
-            String sql = "UPDATE notebook_table SET title=?, content=?, category=?, username=?, pinned=? WHERE id=?";
+            String sql = "UPDATE notebook_table SET title=?, content=?, category=?, pinned=?, username=? WHERE id=?";
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, updated.getTitle());
                 ps.setString(2, updated.getContent());
                 ps.setString(3, updated.getCategory());
-                ps.setString(4, updated.getUserDTO().getUsername());
-                ps.setBoolean(5, updated.getPinned());
+                ps.setBoolean(4, updated.getPinned());
+                ps.setString(5, updated.getUsername().getUsername());
                 ps.setInt(6, id);
 
                 int affected = ps.executeUpdate();
@@ -130,22 +151,22 @@ public class NotebookDAO implements IDaoImplements<NotebookDTO> {
     // 📄 Listeyi güncelleme
     @Override
     public NotebookDTO mapToObjectDTO(ResultSet rs) throws SQLException {
-        UserDTO userDTO = getUserById(rs.getInt("user_id"));
+        String username = rs.getString("username");
+
+        // username ile UserDTO'yu al
+        UserDAO userDAO = new UserDAO();
+        UserDTO userDTO = userDAO.findByName(username).orElse(null);
+
         return NotebookDTO.builder()
                 .id(rs.getInt("id"))
                 .title(rs.getString("title"))
                 .content(rs.getString("content"))
                 .category(rs.getString("category"))
-                .userDTO(userDTO)
                 .pinned(rs.getBoolean("pinned"))
+                .username(userDTO)
                 .build();
     }
 
-
-    private UserDTO getUserById(int userId) {
-        UserDAO userDAO = new UserDAO();
-        return userDAO.findById(userId).orElse(null);
-    }
 
 
     // 📄 Not seçimi

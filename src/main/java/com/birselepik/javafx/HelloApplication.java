@@ -73,17 +73,17 @@ public class HelloApplication extends Application {
             stmt.execute(createKdvTableSQL);
 
 
-        // NOTEBOOK tablosu
-        String createNotebookTableSQL = """
+            String createNotebookTableSQL = """
       CREATE TABLE IF NOT EXISTS notebook_table (
            id INT AUTO_INCREMENT PRIMARY KEY,
            title VARCHAR(255) NOT NULL,
            content VARCHAR(255) NOT NULL,
            category VARCHAR(100) NOT NULL,
-           userDTO VARCHAR(100) NOT NULL,
-           pinned BOOLEAN NOT NULL
+           pinned BOOLEAN NOT NULL,
+           username VARCHAR(100) NOT NULL
         );
     """;
+            // NOTEBOOK tablosu
         stmt.execute(createNotebookTableSQL);
     }
 
