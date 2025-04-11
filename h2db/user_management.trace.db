@@ -262,3 +262,15 @@ SELECT * FROM user_table WHERE username = ? [42102-224]
 2025-04-10 21:27:15.032142+03:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_TABLE" not found; SQL statement:
 SELECT * FROM user_table WHERE username = ? [42102-224]
+2025-04-11 16:46:49.085778+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "CONTENT CHARACTER VARYING(255)": "'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lore... (574)"; SQL statement:
+UPDATE notebook_table SET title=?, content=?, category=?, pinned=?, username=? WHERE id=? [22001-224]
+2025-04-11 16:46:57.534159+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "CONTENT CHARACTER VARYING(255)": "'It is a long established fact that a reader will be distracted by the readable ... (613)"; SQL statement:
+UPDATE notebook_table SET title=?, content=?, category=?, pinned=?, username=? WHERE id=? [22001-224]
+2025-04-11 16:47:06.968699+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "CONTENT CHARACTER VARYING(255)": "'There are many variations of passages of Lorem Ipsum available, but the majorit... (750)"; SQL statement:
+UPDATE notebook_table SET title=?, content=?, category=?, pinned=?, username=? WHERE id=? [22001-224]
+2025-04-11 16:47:14.652728+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "CONTENT CHARACTER VARYING(255)": "'There are many variations of passages of Lorem Ipsum available, but the majorit... (750)"; SQL statement:
+UPDATE notebook_table SET title=?, content=?, category=?, pinned=?, username=? WHERE id=? [22001-224]

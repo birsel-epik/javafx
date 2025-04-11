@@ -3,47 +3,118 @@
     -fx-background: #ffffff;
     -fx-text-fill: #000000;
 }
-/*
-.button {
-    -fx-background-color: #e0e0e0;
-    -fx-text-fill: #000000;
-}
-*/
-
 
 .button {
-    -fx-background-color: #2F2F2F; /* Arka plan rengi: Antrasit gri */
-    -fx-text-fill: white; /* Yazı rengi: Beyaz */
-    -fx-font-size: 14px; /* Yazı boyutu */
-    -fx-padding: 10px 20px; /* İç boşluk */
-    -fx-border-color: #4CAF50; /* Çerçeve rengi: Yeşil */
-    -fx-border-width: 2px; /* Çerçeve kalınlığı */
-    -fx-border-radius: 8px; /* Yuvarlatılmış köşeler */
-    -fx-background-radius: 8px; /* Yuvarlatılmış köşeler */
-    -fx-cursor: hand; /* İmleç tipi */
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0, 0, 2); /* Gölge efekti */
-    -fx-transition: all 0.3s ease; /* Hover ve diğer efektlere geçiş animasyonu */
+    -fx-background-color: #0033a3;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-border-color: #022c87;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0, 0, 2);
+    -fx-transition: all 0.3s ease;
 }
 
-/* Hover (üzerine gelince) efekti */
 .button:hover {
-    -fx-background-color: #4CAF50; /* Arka plan rengi: Yeşil */
-    -fx-text-fill: black; /* Yazı rengi: Siyah */
+    -fx-background-color: #022c87;
+    -fx-text-fill: black;
 }
 
-/* Basıldığında (pressed) efekti */
 .button:pressed {
-    -fx-background-color: #2E7D32; /* Daha koyu yeşil */
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 1); /* Daha az belirgin gölge */
-    -fx-translate-y: 2px; /* Hafif aşağı hareket */
+    -fx-background-color: #022c87;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 1);
+    -fx-translate-y: 2px;
 }
-
 
 .vbox {
-    -fx-background: #cc0000;
+    -fx-background: #e8f5e9;
+}
+
+.box-padding {
+    -fx-padding: 20px;
+}
+
+.label-title-big {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #fff;
+}
+
+
+.label-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000;
+}
+
+.menu-bar {
+    -fx-font-size: 14px;
+    -fx-background-color: #fff;
+    -fx-text-fill: #2c3e50;
+    -fx-padding:5px 0;
+}
+
+.panel-left, .panel-right {
+    -fx-padding: 15px;
+}
+
+.input-field, .combo-box {
+    -fx-padding: 6;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: #ccc;
+    -fx-background-color: #fff;
+}
+
+.data-table {
+    -fx-border-color: #ccc;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-table-cell-border-color: transparent;
+    -fx-selection-bar: #e0e0e0;
+}
+
+.action-btn {
+    -fx-background-radius: 6;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-width: 100;
+}
+
+.action-btn.green {
+    -fx-background-color: #28a745;
+}
+
+.action-btn.blue {
+    -fx-background-color: #007bff;
+}
+
+.action-btn.red {
+    -fx-background-color: #dc3545;
+}
+
+.utility-btn {
+    -fx-background-color: #6c757d;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+}
+
+.utility-btn.logout {
+    -fx-background-color: #343a40;
 }
 
 .panel-headerbg {
     -fx-background-color: #2c3e50;
     -fx-padding: 10;
+}
+
+
+.footer {
+    -fx-background-color: #ecf0f1;
+    -fx-padding: 12px;
+    -fx-text-fill: #000;
 }

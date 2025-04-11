@@ -165,10 +165,10 @@ public class AdminController implements Initializable {
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
-       // Theme
+
+        // Theme
         rootPane.sceneProperty().addListener((obs, oldScene, newScene) -> {
             if (newScene != null) {
-                // Temayı yalnızca bir kez eklemek için kontrol yapıyoruz
                 String lightTheme = Objects.requireNonNull(
                         getClass().getClassLoader().getResource("/com/birselepik/javafx/css/light-theme.css")
                 ).toExternalForm();

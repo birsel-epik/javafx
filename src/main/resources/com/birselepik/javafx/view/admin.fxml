@@ -8,26 +8,26 @@
 
         <!-- HEADER -->
         <top>
-            <VBox styleClass="vbox">
-                <HBox alignment="CENTER_LEFT" spacing="20" styleClass="panel-headerbg" >
-                    <Label  fx:id="labelTitle" style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;" />
-                    <Button fx:id="btnDarkMode" onAction="#toggleTheme" style="-fx-background-color: #2c3e50; -fx-text-fill: white; -fx-background-radius: 8;" />
-                    <Button fx:id="btnLanguage" onAction="#languageTheme" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 8;" />
-                    <Button fx:id="btnNotifications" onAction="#showNotifications" style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-background-radius: 8;" />
-                    <Button fx:id="btnBackup" onAction="#backupData" style="-fx-background-color: #16a085; -fx-text-fill: white; -fx-background-radius: 8;" />
-                    <Button fx:id="btnRestore" onAction="#refreshTable" style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-background-radius: 8;" />
+            <VBox styleClass="vbox box-padding">
+                <HBox alignment="CENTER_LEFT" spacing="20" styleClass="panel-headerbg">
+                    <Label  fx:id="labelTitle" styleClass="label-title-big" />
+                    <Button fx:id="btnDarkMode" onAction="#toggleTheme" />
+                    <Button fx:id="btnLanguage" onAction="#languageTheme" />
+                    <Button fx:id="btnNotifications" onAction="#showNotifications" />
+                    <Button fx:id="btnBackup" onAction="#backupData" />
+                    <Button fx:id="btnRestore" onAction="#refreshTable" />
 
                     <Pane HBox.hgrow="ALWAYS" />
-                    <Button fx:id="btnNotebook" onAction="#addNotebook" style="-fx-background-color: #139c12; -fx-text-fill: white; -fx-background-radius: 8;" />
+                    <Button fx:id="btnNotebook" onAction="#addNotebook" />
                     <Pane HBox.hgrow="ALWAYS" />
-                    <Button fx:id="btnProfile" onAction="#showProfile" style="-fx-background-color: #8e44ad; -fx-text-fill: white; -fx-background-radius: 8;" />
+                    <Button fx:id="btnProfile" onAction="#showProfile" />
 
-                    <Button fx:id="btnLogout" onAction="#logout" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-background-radius: 8;" />
-                    <Label fx:id="clockLabel" style="-fx-text-fill: white;" />
+                    <Button fx:id="btnLogout" onAction="#logout" />
+                    <Label fx:id="clockLabel" />
                 </HBox>
 
 
-                <MenuBar fx:id="menuBar" style="-fx-background-color: white; -fx-text-fill: #2c3e50;">
+                <MenuBar fx:id="menuBar" styleClass="menu-bar">
                     <menus>
                         <Menu fx:id="menuFile" text="%menu.file">
                             <MenuItem fx:id="menuLogout" text="%menu.logout" onAction="#logout" />
@@ -56,18 +56,16 @@
 
         <!-- ANA GÖRÜNÜM -->
         <center>
-            <SplitPane orientation="HORIZONTAL" style="-fx-background-size: cover;">
+            <SplitPane orientation="HORIZONTAL">
                 <!--<SplitPane orientation="HORIZONTAL" style="-fx-background-image: url('/images/login.webp'); -fx-background-size: cover;">-->
 
                 <!-- SOL PANEL (Kullanıcı Yönetimi) -->
-                <VBox spacing="20" style="-fx-padding: 30; -fx-background-color: rgba(255,255,255,0.9); -fx-background-radius: 15;">
-                    <Label fx:id="labelUserManagement" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
-                    <TextField fx:id="searchField" promptText="Kullanıcı adı, e-posta veya rol ara..."
-                               style="-fx-padding: 10; -fx-background-radius: 8; -fx-border-color: #ccc; -fx-border-radius: 8;" />
-                    <ComboBox fx:id="filterRoleComboBox" promptText="Rol filtrele"
-                              style="-fx-padding: 8; -fx-background-radius: 8; -fx-border-color: #ccc; -fx-border-radius: 8;" />
+                <VBox spacing="20" styleClass="box-padding">
+                    <Label fx:id="labelUserManagement" styleClass="label-title" />
+                    <TextField fx:id="searchField" promptText="Kullanıcı adı, e-posta veya rol ara..." />
+                    <ComboBox fx:id="filterRoleComboBox" promptText="Rol filtrele" />
 
-                    <TableView fx:id="userTable" prefHeight="300" style="-fx-border-color: #bdc3c7; -fx-background-radius: 10;">
+                    <TableView fx:id="userTable" prefHeight="300">
                         <columns>
                             <TableColumn fx:id="idColumn" text="%ID" prefWidth="40" />
                             <TableColumn fx:id="usernameColumn" text="%username" prefWidth="150" />
@@ -78,10 +76,10 @@
                     </TableView>
 
                     <HBox spacing="10">
-                        <Button fx:id="btnAddUser" text="%button.addUser" onAction="#addUser" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-background-radius: 8;" />
-                        <Button fx:id="btnUpdateUser" text="%button.updateUser" onAction="#updateUser" style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-background-radius: 8;" />
-                        <Button fx:id="btnDeleteUser" text="%button.deleteUser" onAction="#deleteUser" style="-fx-background-color: #c0392b; -fx-text-fill: white; -fx-background-radius: 8;" />
-                        <Button fx:id="btnPrintUser" text="%button.printUser" onAction="#printTable" style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-background-radius: 8;" />
+                        <Button fx:id="btnAddUser" text="%button.addUser" onAction="#addUser" />
+                        <Button fx:id="btnUpdateUser" text="%button.updateUser" onAction="#updateUser" />
+                        <Button fx:id="btnDeleteUser" text="%button.deleteUser" onAction="#deleteUser" />
+                        <Button fx:id="btnPrintUser" text="%button.printUser" onAction="#printTable" />
                     </HBox>
                     <HBox spacing="10">
                     </HBox>
@@ -90,12 +88,11 @@
 
                 <!-- SAĞ PANEL -->
                 <!-- kdv -->
-                <VBox spacing="15" style="-fx-padding: 30; -fx-background-color: rgba(255,255,255,0.95); -fx-background-radius: 15;">
-                    <Label fx:id="labelTaxCalculation" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
-                    <TextField fx:id="searchKdvField" promptText="Fiş numarası ara..."
-                               style="-fx-padding: 10; -fx-background-radius: 8; -fx-border-color: #ccc; -fx-border-radius: 8;" />
+                <VBox spacing="20" styleClass="box-padding">
+                    <Label fx:id="labelTaxCalculation" styleClass="label-title" />
+                    <TextField fx:id="searchKdvField" promptText="Fiş numarası ara..." />
 
-                    <TableView fx:id="kdvTable" prefHeight="300" style="-fx-border-color: #bdc3c7; -fx-background-radius: 10;">
+                    <TableView fx:id="kdvTable" prefHeight="300" >
                         <columns>
                             <TableColumn fx:id="idColumnKdv" text="%ID" prefWidth="40" />
                             <TableColumn fx:id="amountColumn" text="%amount" prefWidth="80" />
@@ -109,37 +106,30 @@
                     </TableView>
 
                     <HBox spacing="10" alignment="CENTER">
-                        <Button fx:id="btnAddKDV" text="%button.addKDV" onAction="#addKdv" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-background-radius: 8;" />
-                        <Button fx:id="btnUpdateKDV" text="%button.updateKDV" onAction="#updateKdv" style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-background-radius: 8;" />
-                        <Button fx:id="btnDeleteKDV" text="%button.deleteKDV" onAction="#deleteKdv" style="-fx-background-color: #c0392b; -fx-text-fill: white; -fx-background-radius: 8;" />
+                        <Button fx:id="btnAddKDV" text="%button.addKDV" onAction="#addKdv"/>
+                        <Button fx:id="btnUpdateKDV" text="%button.updateKDV" onAction="#updateKdv" />
+                        <Button fx:id="btnDeleteKDV" text="%button.deleteKDV" onAction="#deleteKdv" />
                     </HBox>
 
                     <HBox spacing="10" alignment="CENTER">
-                        <Button fx:id="btnExportTxt" text="%button.exportTxt" onAction="#exportKdvAsTxt"
-                                style="-fx-background-color: #7f8c8d; -fx-text-fill: white; -fx-background-radius: 8;" />
-                        <Button fx:id="btnExportPdf" text="%button.exportPdf" onAction="#exportKdvAsPdf"
-                                style="-fx-background-color: #8e44ad; -fx-text-fill: white; -fx-background-radius: 8;" />
-                        <Button fx:id="btnExportExcel" text="%button.exportExcel" onAction="#exportKdvAsExcel"
-                                style="-fx-background-color: #16a085; -fx-text-fill: white; -fx-background-radius: 8;" />
+                        <Button fx:id="btnExportTxt" text="%button.exportTxt" onAction="#exportKdvAsTxt" />
+                        <Button fx:id="btnExportPdf" text="%button.exportPdf" onAction="#exportKdvAsPdf" />
+                        <Button fx:id="btnExportExcel" text="%button.exportExcel" onAction="#exportKdvAsExcel" />
                     </HBox>
 
                     <HBox spacing="10" alignment="CENTER">
-                        <Button fx:id="btnPrintKDV" text="%button.printKDV" onAction="#printKdvTable"
-                                style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-background-radius: 8;" />
-                        <Button fx:id="btnMail" text="%button.mail" onAction="#sendKdvByMail"
-                                style="-fx-background-color: #d35400; -fx-text-fill: white; -fx-background-radius: 8;" />
+                        <Button fx:id="btnPrintKDV" text="%button.printKDV" onAction="#printKdvTable" />
+                        <Button fx:id="btnMail" text="%button.mail" onAction="#sendKdvByMail" />
                     </HBox>
                 </VBox>
 
 
-
                 <!-- Not -->
-                <VBox spacing="15" style="-fx-padding: 30; -fx-background-color: rgba(255,255,255,0.95); -fx-background-radius: 15;">
-                    <Label fx:id="labelNotes" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
-                    <TextField fx:id="searchNotebookField" promptText="Not ara..."
-                               style="-fx-padding: 10; -fx-background-radius: 8; -fx-border-color: #ccc; -fx-border-radius: 8;" />
+                <VBox spacing="20" styleClass="box-padding">
+                    <Label fx:id="labelNotes" styleClass="label-title" />
+                    <TextField fx:id="searchNotebookField" promptText="Not ara..." />
 
-                <TableView fx:id="notebookTable" prefHeight="300" style="-fx-border-color: #bdc3c7; -fx-background-radius: 10;">
+                <TableView fx:id="notebookTable" prefHeight="300">
                     <columns>
                         <TableColumn fx:id="idColumnNotebook" text="%ID" prefWidth="40" />
                         <TableColumn fx:id="titleColumn" text="%title" prefWidth="80" />
@@ -151,9 +141,9 @@
                 </TableView>
 
                 <HBox spacing="10" alignment="CENTER">
-                    <Button fx:id="btnAddNote" text="%button.addNote" onAction="#addNotebook" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-background-radius: 8;" />
-                    <Button fx:id="btnUpdateNote" text="%button.updateNote" onAction="#updateNotebook" style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-background-radius: 8;" />
-                    <Button fx:id="btnDeleteNote" text="%button.deleteNote" onAction="#deleteNotebook" style="-fx-background-color: #c0392b; -fx-text-fill: white; -fx-background-radius: 8;" />
+                    <Button fx:id="btnAddNote" text="%button.addNote" onAction="#addNotebook" />
+                    <Button fx:id="btnUpdateNote" text="%button.updateNote" onAction="#updateNotebook" />
+                    <Button fx:id="btnDeleteNote" text="%button.deleteNote" onAction="#deleteNotebook" />
                 </HBox>
 
                     <!--todo: export ve mail göndermek için butonlar ekle-->
@@ -164,8 +154,8 @@
 
         <!-- FOOTER -->
         <bottom>
-            <HBox alignment="CENTER" style="-fx-background-color: #ecf0f1; -fx-padding: 12;">
-                <Label text="© 2025 Birsel EPİK | Kullanıcı ve KDV Yönetimi Sistemi" style="-fx-text-fill: #7f8c8d; -fx-font-size: 13px;" />
+            <HBox alignment="CENTER" styleClass="footer">
+                <Label text="© 2025 Birsel EPİK | Kullanıcı ve KDV Yönetimi Sistemi" />
             </HBox>
         </bottom>
 
