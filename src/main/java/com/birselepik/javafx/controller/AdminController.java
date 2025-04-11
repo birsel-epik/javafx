@@ -28,6 +28,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -129,6 +130,7 @@ public class AdminController implements Initializable {
     @FXML private Label labelUserManagement;
     @FXML private Label labelTaxCalculation;
     @FXML private Label labelNotes;
+
     @FXML private Button btnDarkMode;
     @FXML private Button btnLanguage;
     @FXML private Button btnNotifications;
@@ -137,11 +139,25 @@ public class AdminController implements Initializable {
     @FXML private Button btnNotebook;
     @FXML private Button btnProfile;
     @FXML private Button btnLogout;
-    @FXML private Button btnAdd;
-    @FXML private Button btnUpdate;
-    @FXML private Button btnDelete;
-    @FXML private Button btnPrint;
+    @FXML private Button btnAddUser;
+    @FXML private Button btnUpdateUser;
+    @FXML private Button btnDeleteUser;
+    @FXML private Button btnPrintUser;
+    @FXML private Button btnAddKDV;
+    @FXML private Button btnUpdateKDV;
+    @FXML private Button btnDeleteKDV;
+    @FXML private Button btnPrintKDV;
+    @FXML private Button btnAddNote;
+    @FXML private Button btnUpdateNote;
+    @FXML private Button btnDeleteNote;
+    @FXML private Button btnExportTxt;
+    @FXML private Button btnExportPdf;
+    @FXML private Button btnExportExcel;
+    @FXML private Button btnMail;
 
+    // for Theme
+    @FXML
+    private AnchorPane rootPane;
 
     @FXML
     private Label clockLabel;
@@ -149,7 +165,22 @@ public class AdminController implements Initializable {
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
+
+       // Theme
+        rootPane.sceneProperty().addListener((obs, oldScene, newScene) -> {
+            if (newScene != null) {
+                // Temayı yalnızca bir kez eklemek için kontrol yapıyoruz
+                String lightTheme = Objects.requireNonNull(
+                        getClass().getClassLoader().getResource("/com/birselepik/javafx/css/light-theme.css")
+                ).toExternalForm();
+                newScene.getStylesheets().add(lightTheme);
+            }
+        });
+
+
+        // Language
         updateLanguage();
+
 
         // Zaman
         Timeline timeline = new Timeline(
@@ -1134,10 +1165,35 @@ public class AdminController implements Initializable {
 
 
     // BİTİRME PROJESİ
+
+    // toggleTheme
     @FXML
     private void toggleTheme(ActionEvent event) {
-        // Tema değiştirme işlemleri burada yapılacak
+        Scene scene = ((Node) event.getSource()).getScene();
+        ObservableList<String> stylesheets = scene.getStylesheets();
+
+        String lightTheme = Objects.requireNonNull(
+                getClass().getClassLoader().getResource("/com/birselepik/javafx/css/light-theme.css")
+        ).toExternalForm();
+
+        String darkTheme = Objects.requireNonNull(
+                getClass().getClassLoader().getResource("/com/birselepik/javafx/css/dark-theme.css")
+        ).toExternalForm();
+
+        // Tema geçişini kontrol et
+        if (stylesheets.contains(darkTheme)) {
+            stylesheets.remove(darkTheme);
+            if (!stylesheets.contains(lightTheme)) {
+                stylesheets.add(lightTheme);
+            }
+        } else {
+            stylesheets.remove(lightTheme);
+            if (!stylesheets.contains(darkTheme)) {
+                stylesheets.add(darkTheme);
+            }
+        }
     }
+
 
 
     // Uygulamanın dili değiştirilecek (TR/EN)
@@ -1166,7 +1222,7 @@ public class AdminController implements Initializable {
         }
     }
 
-
+    // Translations
     private void updateLanguage() {
         menuFile.setText(LanguageManager.get("menu.file"));
         menuKDVTransactions.setText(LanguageManager.get("menu.KDVTransactions"));
@@ -1200,10 +1256,24 @@ public class AdminController implements Initializable {
         btnProfile.setText(LanguageManager.get("button.profile"));
         btnLogout.setText(LanguageManager.get("button.logout"));
 
-        btnAdd.setText(LanguageManager.get("button.add"));
-        btnUpdate.setText(LanguageManager.get("button.update"));
-        btnDelete.setText(LanguageManager.get("button.delete"));
-        btnPrint.setText(LanguageManager.get("button.print"));
+        btnAddUser.setText(LanguageManager.get("button.addUser"));
+        btnUpdateUser.setText(LanguageManager.get("button.updateUser"));
+        btnDeleteUser.setText(LanguageManager.get("button.deleteUser"));
+        btnPrintUser.setText(LanguageManager.get("button.printUser"));
+
+        btnAddKDV.setText(LanguageManager.get("button.addKDV"));
+        btnUpdateKDV.setText(LanguageManager.get("button.updateKDV"));
+        btnDeleteKDV.setText(LanguageManager.get("button.deleteKDV"));
+        btnPrintKDV.setText(LanguageManager.get("button.printKDV"));
+
+        btnAddNote.setText(LanguageManager.get("button.addNote"));
+        btnUpdateNote.setText(LanguageManager.get("button.updateNote"));
+        btnDeleteNote.setText(LanguageManager.get("button.deleteNote"));
+
+        btnExportTxt.setText(LanguageManager.get("button.exportTxt"));
+        btnExportPdf.setText(LanguageManager.get("button.exportPdf"));
+        btnExportExcel.setText(LanguageManager.get("button.exportExcel"));
+        btnMail.setText(LanguageManager.get("button.mail"));
     }
 
 
