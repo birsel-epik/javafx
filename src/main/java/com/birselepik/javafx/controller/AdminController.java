@@ -108,7 +108,27 @@ public class AdminController implements Initializable {
 
 
     // Language (TR - EN) - ResourceBundle
+    @FXML private Menu menuFile;
+    @FXML private Menu menuKDVTransactions;
+    @FXML private Menu menuOtherTransactions;
+    @FXML private Menu menuHelp;
+
+    @FXML private MenuItem menuLogout;
+    @FXML private MenuItem menuUser;
+    @FXML private MenuItem menuAddUser;
+    @FXML private MenuItem menuUpdateUser;
+    @FXML private MenuItem menuDeleteUser;
+    @FXML private MenuItem menuAddKDV;
+    @FXML private MenuItem menuUpdateKDV;
+    @FXML private MenuItem menuDeleteKDV;
+    @FXML private MenuItem menuCalculator;
+    @FXML private MenuItem menuNotebook;
+    @FXML private MenuItem menuAbout;
+
     @FXML private Label labelTitle;
+    @FXML private Label labelUserManagement;
+    @FXML private Label labelTaxCalculation;
+    @FXML private Label labelNotes;
     @FXML private Button btnDarkMode;
     @FXML private Button btnLanguage;
     @FXML private Button btnNotifications;
@@ -117,9 +137,6 @@ public class AdminController implements Initializable {
     @FXML private Button btnNotebook;
     @FXML private Button btnProfile;
     @FXML private Button btnLogout;
-    @FXML private Button labelUserManagement;
-    @FXML private Button labelTaxCalculation;
-    @FXML private Button labelNotes;
     @FXML private Button btnAdd;
     @FXML private Button btnUpdate;
     @FXML private Button btnDelete;
@@ -1151,7 +1168,28 @@ public class AdminController implements Initializable {
 
 
     private void updateLanguage() {
+        menuFile.setText(LanguageManager.get("menu.file"));
+        menuKDVTransactions.setText(LanguageManager.get("menu.KDVTransactions"));
+        menuOtherTransactions.setText(LanguageManager.get("menu.otherTransactions"));
+        menuHelp.setText(LanguageManager.get("menu.help"));
+
+        menuLogout.setText(LanguageManager.get("menu.logout"));
+        menuUser.setText(LanguageManager.get("menu.user"));
+        menuAddUser.setText(LanguageManager.get("menu.addUser"));
+        menuUpdateUser.setText(LanguageManager.get("menu.updateUser"));
+        menuDeleteUser.setText(LanguageManager.get("menu.deleteUser"));
+        menuAddKDV.setText(LanguageManager.get("menu.addKDV"));
+        menuUpdateKDV.setText(LanguageManager.get("menu.updateKDV"));
+        menuDeleteKDV.setText(LanguageManager.get("menu.deleteKDV"));
+        menuCalculator.setText(LanguageManager.get("menu.calculator"));
+        menuNotebook.setText(LanguageManager.get("menu.notebook"));
+        menuAbout.setText(LanguageManager.get("menu.about"));
+
         labelTitle.setText(LanguageManager.get("panel.title"));
+        labelUserManagement.setText(LanguageManager.get("panel.userManagement"));
+        labelTaxCalculation.setText(LanguageManager.get("panel.taxCalculation"));
+        labelNotes.setText(LanguageManager.get("panel.notes"));
+
         btnDarkMode.setText(LanguageManager.get("button.darkMode"));
         btnLanguage.setText(LanguageManager.get("button.language"));
         btnNotifications.setText(LanguageManager.get("button.notifications"));
@@ -1161,10 +1199,6 @@ public class AdminController implements Initializable {
         btnNotebook.setText(LanguageManager.get("button.notebook"));
         btnProfile.setText(LanguageManager.get("button.profile"));
         btnLogout.setText(LanguageManager.get("button.logout"));
-
-        labelUserManagement.setText(LanguageManager.get("panel.userManagement"));
-        labelTaxCalculation.setText(LanguageManager.get("panel.taxCalculation"));
-        labelNotes.setText(LanguageManager.get("panel.notes"));
 
         btnAdd.setText(LanguageManager.get("button.add"));
         btnUpdate.setText(LanguageManager.get("button.update"));
