@@ -12,27 +12,12 @@ import lombok.*;
 
 public class NotebookDTO {
 
-    // 🔢 Veritabanı için benzersiz ID
     private Integer id;
-
-    // 📝 Notun başlığı
     private String title;
-
-    // 📃 Notun içeriği
     private String content;
-
-    // 📂 Kategori (Örn: "Kişisel", "İş", "Okul")
     private String category;
-
-    // 📌 Sabitlenmiş not mu?
     private Boolean pinned;
-
-
-    // 👤 Kullanıcı bilgileri (Composition)
     private UserDTO username;
-
-
-    // ✅ Geçerlilik kontrolü
     public boolean isValid() {
         return title != null && category != null;
     }

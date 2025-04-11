@@ -7,3 +7,8 @@
     -fx-background-color: #444444;
     -fx-text-fill: #ffffff;
 }
+
+.HBox {
+    -fx-background-color: #cc0000;
+    -fx-padding: 10;
+}

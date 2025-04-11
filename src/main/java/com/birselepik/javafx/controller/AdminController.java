@@ -72,7 +72,7 @@ public class AdminController implements Initializable {
         notebookDAO = new NotebookDAO();
     }
 
-    // User İçin
+    // User için
     @FXML private TableView<UserDTO> userTable;
     @FXML private TableColumn<UserDTO, Integer> idColumn;
     @FXML private TableColumn<UserDTO, String> usernameColumn;
@@ -165,7 +165,6 @@ public class AdminController implements Initializable {
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
-
        // Theme
         rootPane.sceneProperty().addListener((obs, oldScene, newScene) -> {
             if (newScene != null) {
@@ -193,7 +192,7 @@ public class AdminController implements Initializable {
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
 
-        // KULLANICI
+        // KULLANICI İÇİN
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -254,7 +253,6 @@ public class AdminController implements Initializable {
             boolean pinnedValue = cellData.getValue().getPinned();
             return new SimpleStringProperty(pinnedValue ? "Evet" : "Hayır");
         });
-
 
         searchNotebookField.textProperty().addListener((obs, oldVal, newVal) -> applyNotebookFilter());
         refreshNotebookTable();
