@@ -2,6 +2,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+
 <AnchorPane fx:id="rootPane" xmlns:fx="http://javafx.com/fxml" fx:controller="com.birselepik.javafx.controller.AdminController" prefWidth="400" prefHeight="450">
 
     <BorderPane xmlns:fx="http://javafx.com/fxml">

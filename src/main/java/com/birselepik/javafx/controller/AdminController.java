@@ -167,14 +167,22 @@ public class AdminController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         // Theme
-        rootPane.sceneProperty().addListener((obs, oldScene, newScene) -> {
-            if (newScene != null) {
-                String lightTheme = Objects.requireNonNull(
-                        getClass().getClassLoader().getResource("/com/birselepik/javafx/css/light-theme.css")
-                ).toExternalForm();
-                newScene.getStylesheets().add(lightTheme);
+        URL cssUrl = getClass().getClassLoader().getResource("com/birselepik/javafx/css/light-theme.css");
+        if (cssUrl != null) {
+            String lightTheme = cssUrl.toExternalForm();
+            Scene scene = rootPane.getScene();
+            if (scene != null && !scene.getStylesheets().contains(lightTheme)) {
+                scene.getStylesheets().add(lightTheme);
             }
-        });
+
+            rootPane.sceneProperty().addListener((obs, oldScene, newScene) -> {
+                if (newScene != null && !newScene.getStylesheets().contains(lightTheme)) {
+                    newScene.getStylesheets().add(lightTheme);
+                }
+            });
+        } else {
+            System.err.println("❌ Tema dosyası bulunamadı: light-theme.css");
+        }
 
 
         // Language
@@ -256,6 +264,7 @@ public class AdminController implements Initializable {
 
         searchNotebookField.textProperty().addListener((obs, oldVal, newVal) -> applyNotebookFilter());
         refreshNotebookTable();
+
     }
 
     // KULLANICI
@@ -1170,13 +1179,11 @@ public class AdminController implements Initializable {
         Scene scene = ((Node) event.getSource()).getScene();
         ObservableList<String> stylesheets = scene.getStylesheets();
 
-
         String lightThemePath = getClass().getResource("/com/birselepik/javafx/css/light-theme.css") != null ?
                 getClass().getResource("/com/birselepik/javafx/css/light-theme.css").toExternalForm() : null;
 
         String darkThemePath = getClass().getResource("/com/birselepik/javafx/css/dark-theme.css") != null ?
                 getClass().getResource("/com/birselepik/javafx/css/dark-theme.css").toExternalForm() : null;
-
 
         if (lightThemePath == null || darkThemePath == null) {
             System.out.println("Tema dosyaları bulunamadı! Lütfen dosya yollarını kontrol edin.");
