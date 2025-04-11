@@ -1249,7 +1249,7 @@ public class AdminController implements Initializable {
         labelTaxCalculation.setText(LanguageManager.get("panel.taxCalculation"));
         labelNotes.setText(LanguageManager.get("panel.notes"));
 
-        themeToggleButton.setText(LanguageManager.get("mode.dark"));
+        //themeToggleButton.setText(LanguageManager.get("mode.dark"));
         btnLanguage.setText(LanguageManager.get("button.language"));
         btnNotifications.setText(LanguageManager.get("button.notifications"));
 
