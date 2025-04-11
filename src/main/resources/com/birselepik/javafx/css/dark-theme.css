@@ -68,6 +68,7 @@
         -fx-border-radius: 6;
         -fx-border-color: #333;
         -fx-background-color: #ccc;
+        -fx-text-fill: #000;
 }
 
 .data-table {
@@ -79,22 +80,62 @@
 }
 
 .action-btn {
+    -fx-border: none !important;
+    -fx-border-width: 0px !important;
     -fx-background-radius: 6;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-pref-width: 100;
+    -fx-font-size:14px;
+    -fx-background-color: #666 !important;
 }
 
-.action-btn.green {
-    -fx-background-color: #2ecc71;
+.action-green {
+    -fx-border: none !important;
+    -fx-border-width: 0px !important;
+    -fx-background-radius: 6;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-width: 100;
+    -fx-font-size:14px;
+    -fx-background-color: #ccc;
+    -fx-background-color: #28a745 !important;
 }
 
-.action-btn.blue {
-    -fx-background-color: #3498db;
+.action-blue {
+     -fx-border: none !important;
+     -fx-border-width: 0px !important;
+    -fx-background-radius: 6;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-width: 100;
+    -fx-font-size:14px;
+    -fx-background-color: #ccc;
+    -fx-background-color: #007bff !important;
 }
 
-.action-btn.red {
-    -fx-background-color: #e74c3c;
+.action-red {
+    -fx-border: none !important;
+    -fx-border-width: 0px !important;
+    -fx-background-radius: 6;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-width: 100;
+    -fx-font-size:14px;
+    -fx-background-color: #ccc;
+    -fx-background-color: #dc3545 !important;
+}
+
+.action-yellow {
+    -fx-border: none !important;
+    -fx-border-width: 0px !important;
+    -fx-background-radius: 6;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-width: 100;
+    -fx-font-size:14px;
+    -fx-background-color: #ccc;
+    -fx-background-color: #f2ba06 !important;
 }
 
 .utility-btn {
@@ -116,5 +157,9 @@
 .footer {
     -fx-background-color: #ecf0f1;
     -fx-padding: 12px;
-    -fx-text-fill: #000;
+}
+
+.footer-txt {
+    -fx-text-fill: black;
+    -fx-font-size: 11px;
 }

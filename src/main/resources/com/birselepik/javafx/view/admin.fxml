@@ -76,10 +76,10 @@
                     </TableView>
 
                     <HBox spacing="10">
-                        <Button fx:id="btnAddUser" text="%button.addUser" onAction="#addUser" />
-                        <Button fx:id="btnUpdateUser" text="%button.updateUser" onAction="#updateUser" />
-                        <Button fx:id="btnDeleteUser" text="%button.deleteUser" onAction="#deleteUser" />
-                        <Button fx:id="btnPrintUser" text="%button.printUser" onAction="#printTable" />
+                        <Button fx:id="btnAddUser" text="%button.addUser" onAction="#addUser" styleClass="action-green" />
+                        <Button fx:id="btnUpdateUser" text="%button.updateUser" onAction="#updateUser" styleClass="action-blue" />
+                        <Button fx:id="btnDeleteUser" text="%button.deleteUser" onAction="#deleteUser" styleClass="action-red" />
+                        <Button fx:id="btnPrintUser" text="%button.printUser" onAction="#printTable" styleClass="action-yellow" />
                     </HBox>
                     <HBox spacing="10">
                     </HBox>
@@ -106,20 +106,20 @@
                     </TableView>
 
                     <HBox spacing="10" alignment="CENTER">
-                        <Button fx:id="btnAddKDV" text="%button.addKDV" onAction="#addKdv"/>
-                        <Button fx:id="btnUpdateKDV" text="%button.updateKDV" onAction="#updateKdv" />
-                        <Button fx:id="btnDeleteKDV" text="%button.deleteKDV" onAction="#deleteKdv" />
+                        <Button fx:id="btnAddKDV" text="%button.addKDV" onAction="#addKdv" styleClass="action-green"/>
+                        <Button fx:id="btnUpdateKDV" text="%button.updateKDV" onAction="#updateKdv" styleClass="action-blue" />
+                        <Button fx:id="btnDeleteKDV" text="%button.deleteKDV" onAction="#deleteKdv" styleClass="action-red" />
                     </HBox>
 
                     <HBox spacing="10" alignment="CENTER">
-                        <Button fx:id="btnExportTxt" text="%button.exportTxt" onAction="#exportKdvAsTxt" />
-                        <Button fx:id="btnExportPdf" text="%button.exportPdf" onAction="#exportKdvAsPdf" />
-                        <Button fx:id="btnExportExcel" text="%button.exportExcel" onAction="#exportKdvAsExcel" />
+                        <Button fx:id="btnExportTxt" text="%button.exportTxt" onAction="#exportKdvAsTxt" styleClass="action-btn" />
+                        <Button fx:id="btnExportPdf" text="%button.exportPdf" onAction="#exportKdvAsPdf" styleClass="action-btn" />
+                        <Button fx:id="btnExportExcel" text="%button.exportExcel" onAction="#exportKdvAsExcel" styleClass="action-btn" />
                     </HBox>
 
                     <HBox spacing="10" alignment="CENTER">
-                        <Button fx:id="btnPrintKDV" text="%button.printKDV" onAction="#printKdvTable" />
-                        <Button fx:id="btnMail" text="%button.mail" onAction="#sendKdvByMail" />
+                        <Button fx:id="btnPrintKDV" text="%button.printKDV" onAction="#printKdvTable" styleClass="action-btn" />
+                        <Button fx:id="btnMail" text="%button.mail" onAction="#sendKdvByMail" styleClass="action-btn" />
                     </HBox>
                 </VBox>
 
@@ -141,9 +141,9 @@
                 </TableView>
 
                 <HBox spacing="10" alignment="CENTER">
-                    <Button fx:id="btnAddNote" text="%button.addNote" onAction="#addNotebook" />
-                    <Button fx:id="btnUpdateNote" text="%button.updateNote" onAction="#updateNotebook" />
-                    <Button fx:id="btnDeleteNote" text="%button.deleteNote" onAction="#deleteNotebook" />
+                    <Button fx:id="btnAddNote" text="%button.addNote" onAction="#addNotebook" styleClass="action-green" />
+                    <Button fx:id="btnUpdateNote" text="%button.updateNote" onAction="#updateNotebook" styleClass="action-blue" />
+                    <Button fx:id="btnDeleteNote" text="%button.deleteNote" onAction="#deleteNotebook" styleClass="action-red" />
                 </HBox>
 
                     <!--todo: export ve mail göndermek için butonlar ekle-->
@@ -155,7 +155,7 @@
         <!-- FOOTER -->
         <bottom>
             <HBox alignment="CENTER" styleClass="footer">
-                <Label text="© 2025 Birsel EPİK | Kullanıcı ve KDV Yönetimi Sistemi" />
+                <Label text="© 2025 Birsel EPİK | Kullanıcı ve KDV Yönetimi Sistemi" styleClass="footer-txt" />
             </HBox>
         </bottom>
 
