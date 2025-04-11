@@ -1164,30 +1164,35 @@ public class AdminController implements Initializable {
 
     // BİTİRME PROJESİ
 
-    // toggleTheme
+    // toggleTheme (light or dark)
     @FXML
     private void toggleTheme(ActionEvent event) {
         Scene scene = ((Node) event.getSource()).getScene();
         ObservableList<String> stylesheets = scene.getStylesheets();
 
-        String lightTheme = Objects.requireNonNull(
-                getClass().getClassLoader().getResource("/com/birselepik/javafx/css/light-theme.css")
-        ).toExternalForm();
 
-        String darkTheme = Objects.requireNonNull(
-                getClass().getClassLoader().getResource("/com/birselepik/javafx/css/dark-theme.css")
-        ).toExternalForm();
+        String lightThemePath = getClass().getResource("/com/birselepik/javafx/css/light-theme.css") != null ?
+                getClass().getResource("/com/birselepik/javafx/css/light-theme.css").toExternalForm() : null;
 
-        // Tema geçişini kontrol et
-        if (stylesheets.contains(darkTheme)) {
-            stylesheets.remove(darkTheme);
-            if (!stylesheets.contains(lightTheme)) {
-                stylesheets.add(lightTheme);
+        String darkThemePath = getClass().getResource("/com/birselepik/javafx/css/dark-theme.css") != null ?
+                getClass().getResource("/com/birselepik/javafx/css/dark-theme.css").toExternalForm() : null;
+
+
+        if (lightThemePath == null || darkThemePath == null) {
+            System.out.println("Tema dosyaları bulunamadı! Lütfen dosya yollarını kontrol edin.");
+            return;
+        }
+
+
+        if (stylesheets.contains(darkThemePath)) {
+            stylesheets.remove(darkThemePath);
+            if (!stylesheets.contains(lightThemePath)) {
+                stylesheets.add(lightThemePath);
             }
         } else {
-            stylesheets.remove(lightTheme);
-            if (!stylesheets.contains(darkTheme)) {
-                stylesheets.add(darkTheme);
+            stylesheets.remove(lightThemePath);
+            if (!stylesheets.contains(darkThemePath)) {
+                stylesheets.add(darkThemePath);
             }
         }
     }
