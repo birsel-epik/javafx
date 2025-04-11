@@ -12,7 +12,9 @@
             <VBox styleClass="vbox box-padding">
                 <HBox alignment="CENTER_LEFT" spacing="20" styleClass="panel-headerbg">
                     <Label  fx:id="labelTitle" styleClass="label-title-big" />
-                    <Button fx:id="btnDarkMode" onAction="#toggleTheme" />
+                    <Button fx:id="themeToggleButton" text="%mode.dark" onAction="#toggleTheme" />
+
+
                     <Button fx:id="btnLanguage" onAction="#languageTheme" />
                     <Button fx:id="btnNotifications" onAction="#showNotifications" />
                     <Button fx:id="btnBackup" onAction="#backupData" />

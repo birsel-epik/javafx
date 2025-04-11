@@ -82,8 +82,6 @@ public class LoginController {
         }
     }
 
-
-
     private void openAdminPane() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath.ADMIN));
@@ -91,16 +89,22 @@ public class LoginController {
 
             Parent parent = fxmlLoader.load();
 
+            // 🌞 Başlangıç teması: light-theme.css
+            Scene scene = new Scene(parent);
+            scene.getStylesheets().add(getClass().getResource("/com/birselepik/javafx/css/light-theme.css").toExternalForm());
+
             Stage stage = (Stage) usernameField.getScene().getWindow();
-            stage.setScene(new Scene(parent));
+            stage.setScene(scene);
             stage.setTitle("Admin Panel");
             stage.show();
+
         } catch (Exception e) {
             System.out.println(SpecialColor.RED + "Admin Sayfasına yönlendirme başarısız" + SpecialColor.RESET);
             e.printStackTrace();
             showAlert("Hata", "Admin ekranı yüklenemedi", Alert.AlertType.ERROR);
         }
     }
+
 
     @FXML
     private void switchToRegister(ActionEvent actionEvent) {

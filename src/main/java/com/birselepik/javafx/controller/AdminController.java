@@ -131,7 +131,7 @@ public class AdminController implements Initializable {
     @FXML private Label labelTaxCalculation;
     @FXML private Label labelNotes;
 
-    @FXML private Button btnDarkMode;
+    @FXML private Button themeToggleButton;
     @FXML private Button btnLanguage;
     @FXML private Button btnNotifications;
     @FXML private Button btnBackup;
@@ -1174,33 +1174,26 @@ public class AdminController implements Initializable {
     // BİTİRME PROJESİ
 
     // toggleTheme (light or dark)
+
+    private Boolean isDarkMode = false;
+
     @FXML
     private void toggleTheme(ActionEvent event) {
         Scene scene = ((Node) event.getSource()).getScene();
-        ObservableList<String> stylesheets = scene.getStylesheets();
 
-        String lightThemePath = getClass().getResource("/com/birselepik/javafx/css/light-theme.css") != null ?
-                getClass().getResource("/com/birselepik/javafx/css/light-theme.css").toExternalForm() : null;
+        // CSS'leri temizle
+        scene.getStylesheets().clear();
 
-        String darkThemePath = getClass().getResource("/com/birselepik/javafx/css/dark-theme.css") != null ?
-                getClass().getResource("/com/birselepik/javafx/css/dark-theme.css").toExternalForm() : null;
+        // Tema yolunu ayarla
+        String cssPath = isDarkMode ? "/com/birselepik/javafx/css/light-theme.css" : "/com/birselepik/javafx/css/dark-theme.css";
+        URL cssUrl = getClass().getResource(cssPath);
 
-        if (lightThemePath == null || darkThemePath == null) {
-            System.out.println("Tema dosyaları bulunamadı! Lütfen dosya yollarını kontrol edin.");
-            return;
-        }
-
-
-        if (stylesheets.contains(darkThemePath)) {
-            stylesheets.remove(darkThemePath);
-            if (!stylesheets.contains(lightThemePath)) {
-                stylesheets.add(lightThemePath);
-            }
+        if (cssUrl != null) {
+            scene.getStylesheets().add(cssUrl.toExternalForm());
+            isDarkMode = !isDarkMode;
+            themeToggleButton.setText(isDarkMode ? "\uD83C\uDF1E Aydınlık Mod" : "\uD83C\uDF19 Karanlık Mod");
         } else {
-            stylesheets.remove(lightThemePath);
-            if (!stylesheets.contains(darkThemePath)) {
-                stylesheets.add(darkThemePath);
-            }
+            System.err.println("❌ Tema dosyası bulunamadı: " + cssPath);
         }
     }
 
@@ -1256,7 +1249,7 @@ public class AdminController implements Initializable {
         labelTaxCalculation.setText(LanguageManager.get("panel.taxCalculation"));
         labelNotes.setText(LanguageManager.get("panel.notes"));
 
-        btnDarkMode.setText(LanguageManager.get("button.darkMode"));
+        themeToggleButton.setText(LanguageManager.get("mode.dark"));
         btnLanguage.setText(LanguageManager.get("button.language"));
         btnNotifications.setText(LanguageManager.get("button.notifications"));
 
