@@ -168,15 +168,6 @@ public class AdminController implements Initializable {
     @FXML
     private Label clockLabel;
 
-    // notification
-    @FXML
-    private Button notificationButton;
-
-    @FXML
-    private Circle notificationBadge;
-
-    @FXML
-    private StackPane notificationStack;
 
 
     @FXML
@@ -1323,6 +1314,7 @@ public class AdminController implements Initializable {
     @FXML
     private void handleNotifications() {
         NotificationDAO.markAllAsRead();
+        NotificationPopupController.show();
         notificationDot.setVisible(false);
     }
 
