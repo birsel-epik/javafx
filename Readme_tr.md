@@ -3,6 +3,8 @@
 ### 🎯 Proje Amacı
 Bu proje, JavaFX kullanarak geliştirilmiş bir masaüstü uygulamasıdır. Uygulama, KDV hesaplamalarını yapabilen, kullanıcı yönetimini sağlayan ve sistem ayarlarını yöneten bir yönetim paneli sunmaktadır. Şirketlerde veri giriş personeli, muhasebeciler ve yöneticiler için kullanılabilecek bir uygulamadır.
 
+▶ [Bitirme Projesi Sunumu: KDV ve Kullanıcı Yönetim Paneli](https://github.com/birsel-epik/javafx/tree/main/pdf/project-presentaiton.pdf)  
+
 ---
 ### ✨ Özellikler
 **Rol Bazlı Yetkilendirme:** Kullanıcılar ADMIN, OPERATOR, USER gibi farklı rollerle giriş yapabilir ve her rol için farklı erişim seviyeleri sağlanır.
@@ -70,7 +72,7 @@ git clone https://github.com/birsel-epik/javafx
 **4.** Uygulamayı çalıştırmak için HelloApplication.java dosyasını çalıştırın:
 
 ```sh 
-java -jar KDVYonetimPaneli.jar
+java -jar maven-wrapper.jar
 ```
 
 **5.** Uygulama açıldıktan sonra kullanıcı adı ve şifreniz ile giriş yapabilirsiniz (varsayılan kullanıcı: admin/root).
@@ -85,7 +87,7 @@ java -jar KDVYonetimPaneli.jar
 - **KDV Hesaplama ve Yönetimi:** KDV hesaplama ve verileri dışa aktarma.
 
 - **Tema ve Dil Desteği:** Karanlık/Açık tema ve Türkçe/İngilizce dil desteği.
-
+  
 - **Bildirim Sistemi:** Bildirim mesajlarını gösterme.
 
 - **Profil Yönetimi:** Kullanıcı profil bilgilerini güncelleme.
@@ -121,7 +123,6 @@ src/
 │   └── ERole, ENoteCategory, FXMLPath, LanguageManager, SceneHelper, SpecialColor
 ├── view/
 │   └── admin.fxml, login.fxml, register.fxml, kdv.fxml, notebook.fxml, notification-popup.fxml, profile.fxml
-
 └── HelloApplication.java
 ```
 

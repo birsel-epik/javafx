@@ -3,6 +3,9 @@
 ### 🎯 Project Purpose
 This project is a desktop application developed using JavaFX. The application provides an administration panel that can perform KDV calculations, provide user management and manage system settings. It is an application that can be used for data entry personnel, accountants and managers in companies.
 
+▶ [Graduation Project Presentation: KDV and User Management Panel](https://github.com/birsel-epik/javafx/tree/main/pdf/project-presentaiton.pdf)
+
+
 ---
 ### ✨ Features
 **Role-Based Authorization:** Users can log in with different roles such as ADMIN, OPERATOR, USER and different access levels are provided for each role.
@@ -70,7 +73,7 @@ git clone https://github.com/birsel-epik/javafx
 **4.** Run the HelloApplication.java file to run the application:
 
 ```sh
-java -jar KDVYonetimPaneli.jar
+java -jar maven-wrapper.jar
 ```
 
 **5.** After the application is opened, you can log in with your username and password (default user: admin/root).
@@ -121,8 +124,9 @@ src/
 │ └── ERole, ENoteCategory, FXMLPath, LanguageManager, SceneHelper, SpecialColor
 ├── view/
 │ └── admin.fxml, login.fxml, register.fxml, kdv.fxml, notebook.fxml, notification-popup.fxml, profile.fxml
-
 └── HelloApplication.java
+└─ pdf
+└── project-presentation.pdf
 ```
 
 ---
