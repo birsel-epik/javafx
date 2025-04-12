@@ -1,130 +1,130 @@
-## KDV ve Kullanıcı Yönetim Paneli - JavaFX Uygulaması
+## KDV and User Management Panel - JavaFX Application
 
-### 🎯 Proje Amacı
-Bu proje, JavaFX kullanarak geliştirilmiş bir masaüstü uygulamasıdır. Uygulama, KDV hesaplamalarını yapabilen, kullanıcı yönetimini sağlayan ve sistem ayarlarını yöneten bir yönetim paneli sunmaktadır. Şirketlerde veri giriş personeli, muhasebeciler ve yöneticiler için kullanılabilecek bir uygulamadır.
-
----
-### ✨ Özellikler
-**Rol Bazlı Yetkilendirme:** Kullanıcılar ADMIN, OPERATOR, USER gibi farklı rollerle giriş yapabilir ve her rol için farklı erişim seviyeleri sağlanır.
-
-- **Kullanıcı Yönetimi:** Kullanıcılar eklenebilir, silinebilir, güncellenebilir ve şifreleri sıfırlanabilir.
-
-- **KDV Hesaplama ve Yönetimi:** KDV hesaplamaları anında yapılabilir ve veriler TXT, PDF, ve EXCEL dosyalarına aktarılabilir.
-
-- **Tema ve Dil Desteği:** Karanlık ve açık tema seçenekleri ve Türkçe ile İngilizce dil desteği mevcuttur.
-
-- **Bildirim Sistemi:** Kullanıcıya başarı, hata ve uyarı mesajları bildirim olarak gösterilebilir.
-
-- **Profil Yönetimi:** Kullanıcılar, şifre değişikliği yapabilir ve profil bilgilerini güncelleyebilir.
-
-- **Yedekleme ve Geri Yükleme:** Veritabanı yedeği alınabilir ve geri yüklenebilir.
-
-- **Saat ve Tarih Gösterimi:** Anlık saat ve tarih bilgisi kullanıcıya gösterilir.
-
-- **Not Defteri:** Kullanıcılar kendi notlarını oluşturabilir ve zamanlayıcı ile notlarını takip edebilirler.
+### 🎯 Project Purpose
+This project is a desktop application developed using JavaFX. The application provides an administration panel that can perform KDV calculations, provide user management and manage system settings. It is an application that can be used for data entry personnel, accountants and managers in companies.
 
 ---
+### ✨ Features
+**Role-Based Authorization:** Users can log in with different roles such as ADMIN, OPERATOR, USER and different access levels are provided for each role.
 
-### 🧰 Kullanılan Teknolojiler
+- **User Management:** Users can be added, deleted, updated and their passwords can be reset.
+
+- **KDV Calculation and Management:** KDV calculations can be made instantly and data can be exported to TXT, PDF, and EXCEL files.
+
+- **Theme and Language Support:** Dark and light theme options and Turkish and English language support are available.
+
+- **Notification System:** Success, error and warning messages can be displayed to the user as notifications.
+
+- **Profile Management:** Users can change their passwords and update their profile information.
+
+- **Backup and Restore:** Database backups can be taken and restored.
+
+- **Time and Date Display:** Instant time and date information is displayed to the user.
+
+- **Notepad:** Users can create their own notes and track their notes with a timer.
+
+---
+
+### 🧰 Technologies Used
 Java Core
 
 JavaFX (FXML + Internal CSS)
 
-H2 Database (JDBC ile)
+H2 Database (with JDBC)
 
-SQL (Veritabanı işlemleri için)
+SQL (For database operations)
 
-BCrypt (Şifre güvenliği için)
+BCrypt (For password security)
 
-Apache POI, PDFBox (Veri dışa aktarımı için)
+Apache POI, PDFBox (For data export)
 
-JavaMail API (Opsiyonel, e-posta gönderimi için)
+JavaMail API (Optional, for email sending)
 
-Timeline/ScheduledExecutorService (Zamanlayıcı kullanımı için)
+Timeline/ScheduledExecutorService (For scheduler usage)
 
-JavaFX Chart (Grafiksel raporlama için)
-
----
-
-### 🛠 Kurulum ve Çalıştırma
-#### Gereksinimler:
-Java 8 veya daha yeni bir sürüm
-
-IntelliJ IDEA (veya başka bir Java IDE)
-
-H2 Database (Veritabanı için)
+JavaFX Chart (For graphical reporting)
 
 ---
 
-### 📋 Adımlar
-**1.** Bu repository'yi klonlayın:  [Java FX GitHub Address](https://github.com/birsel-epik/javafx)
+### 🛠 Installation and Operation
+#### Requirements:
+Java 8 or later
 
-```sh 
+IntelliJ IDEA (or other Java IDE)
+
+H2 Database (For database)
+
+---
+
+### 📋 Steps
+**1.** Clone this repository: [Java FX GitHub Address](https://github.com/birsel-epik/javafx)
+
+```sh
 git clone https://github.com/birsel-epik/javafx
 ```
 
-**2.** Proje dosyalarını açın ve gerekli bağımlılıkları yükleyin.
+**2.** Open the project files and install the necessary dependencies.
 
-**3.** H2 veritabanını başlatın (veritabanı bağlantısı yapılandırması SingletonPropertiesDBConnection.java dosyasında yer almaktadır).
+**3.** Start the H2 database (database connection configuration is in the SingletonPropertiesDBConnection.java file).
 
-**4.** Uygulamayı çalıştırmak için HelloApplication.java dosyasını çalıştırın:
+**4.** Run the HelloApplication.java file to run the application:
 
-```sh 
+```sh
 java -jar KDVYonetimPaneli.jar
 ```
 
-**5.** Uygulama açıldıktan sonra kullanıcı adı ve şifreniz ile giriş yapabilirsiniz (varsayılan kullanıcı: admin/root).
+**5.** After the application is opened, you can log in with your username and password (default user: admin/root).
 
 ---
 
-### 📦 Modüller
-- **Login/Register:** Kullanıcı giriş ve kayıt işlemleri.
+### 📦 Modules
+- **Login/Register:** User login and registration operations.
 
-- **Kullanıcı Yönetimi:** Kullanıcı ekleme, güncelleme, silme işlemleri.
+- **User Management:** User adding, updating, deleting operations.
 
-- **KDV Hesaplama ve Yönetimi:** KDV hesaplama ve verileri dışa aktarma.
+- **KDV Calculation and Management:** KDV calculation and data export.
 
-- **Tema ve Dil Desteği:** Karanlık/Açık tema ve Türkçe/İngilizce dil desteği.
+- **Theme and Language Support:** Dark/Light theme and Turkish/English language support.
 
-- **Bildirim Sistemi:** Bildirim mesajlarını gösterme.
+- **Notification System:** Show notification messages.
 
-- **Profil Yönetimi:** Kullanıcı profil bilgilerini güncelleme.
+- **Profile Management:** Update user profile information.
 
-- **Yedekleme & Geri Yükleme:** Veritabanı yedekleme ve geri yükleme işlemleri.
-
----
-
-### 🚀 Ekstra Özellikler
-- **Grafiksel Raporlama:** Aylık KDV dağılımını PieChart veya BarChart ile gösterme.
-
-- **WebView Entegrasyonu:** Yardım dökümanı veya kılavuz gösterimi.
+- **Backup & Restore:** Database backup and restore operations.
 
 ---
 
-### 🗂 Proje Yapısı
+### 🚀 Extra Features
+- **Graphical Reporting:** Show monthly KDV distribution with PieChart or BarChart.
 
-```sh 
+- **WebView Integration:** Help document or guide display.
+
+---
+
+### 🗂 Project Structure
+
+```sh
 src/
 ├── controller/
-│   └── AdminController.java, LoginController.java, RegisterController.java, ProfileController.java, KdvController.java, NotebookController.java, NotificationPopupController.java   
+│ └── AdminController.java, LoginController.java, RegisterController.java, ProfileController.java, KdvController.java, NotebookController.java, NotificationPopupController.java
 ├── dao/
-│   └── UserDAO.java, KdvDAO.java, NotebookDAO.java, NotificationDAO.java ...
+│ └── UserDAO.java, KdvDAO.java, NotebookDAO.java, NotificationDAO.java ...
 ├── database/
-│   └── SingletonPropertiesDBConnection.java
+│ └── SingletonPropertiesDBConnection.java
 ├── dto/
-│   └── UserDTO.java, KdvDTO.java, NotebookDTO.java
+│ └── UserDTO.java, KdvDTO.java, NotebookDTO.java
 ├── exceptions/
-│   └── RegisterNotFoundException
+│ └── RegisterNotFoundException
 ├── iofiles/
-│   └── IFileHandlerInterface, SpecialFileHandler
+│ └── IFileHandlerInterface, SpecialFileHandler
 ├── utils/
-│   └── ERole, ENoteCategory, FXMLPath, LanguageManager, SceneHelper, SpecialColor
+│ └── ERole, ENoteCategory, FXMLPath, LanguageManager, SceneHelper, SpecialColor
 ├── view/
-│   └── admin.fxml, login.fxml, register.fxml, kdv.fxml, notebook.fxml, notification-popup.fxml, profile.fxml
+│ └── admin.fxml, login.fxml, register.fxml, kdv.fxml, notebook.fxml, notification-popup.fxml, profile.fxml
 
 └── HelloApplication.java
 ```
 
 ---
-### 🤝 Katkılar
-Bu projeye katkı sağlamak için pull request gönderebilir veya önerilerinizi Issues kısmından bildirebilirsiniz.
+### 🤝 Contributions
+Pull to contribute to this project You can send a request or submit your suggestions in the Issues section.
