@@ -9,13 +9,15 @@ public class NotificationDAO {
     }
 
     public static void markAllAsRead() {
+        System.out.println("🔔 Tüm bildirimler okundu olarak işaretlendi.");
     }
 
     public static List<String> getUnreadMessages() {
-        List<String> messages = new ArrayList<>();
-        messages.add("Yeni kullanıcı eklendi.");
-        messages.add("Yedekleme başarıyla tamamlandı.");
-        return messages;
+        List<String> notifications = new ArrayList<>();
+        notifications.add("Yeni kullanıcı kaydı yapıldı.");
+        notifications.add("Veritabanı yedeği başarıyla alındı.");
+        notifications.add("3 yeni not defteri eklendi.");
+        return notifications;
     }
 
 }

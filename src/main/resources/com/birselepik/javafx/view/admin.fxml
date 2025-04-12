@@ -18,7 +18,7 @@
                     <Button fx:id="btnLanguage" onAction="#languageTheme" />
 
                     <StackPane fx:id="notificationStack">
-                        <Button fx:id="btnNotifications" text="%notifications" onAction="#handleNotifications"/>
+                        <Button fx:id="btnNotifications" text="%notifications" onAction="#showNotifications"/>
                         <Circle fx:id="notificationDot" radius="4" fill="red" visible="false">
                             <StackPane.margin>
                                 <Insets top="2" right="2"/>

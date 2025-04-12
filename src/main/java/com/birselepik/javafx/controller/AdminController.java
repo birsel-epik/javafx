@@ -1235,6 +1235,7 @@ public class AdminController implements Initializable {
         }
 
         checkUnreadNotifications();
+        updateLanguage();
     }
 
     // Translations
@@ -1300,6 +1301,15 @@ public class AdminController implements Initializable {
     @FXML
     private Circle notificationDot;
 
+    @FXML
+    private void showNotifications() {
+        List<String> notifications = NotificationDAO.getUnreadMessages();
+        NotificationPopupController.show(notifications);
+        NotificationDAO.markAllAsRead();
+        notificationDot.setVisible(false);
+    }
+
+
     private void checkUnreadNotifications() {
         boolean hasUnread = NotificationDAO.hasUnread();
         updateNotificationDot(hasUnread);
@@ -1311,12 +1321,6 @@ public class AdminController implements Initializable {
         }
     }
 
-    @FXML
-    private void handleNotifications() {
-        NotificationDAO.markAllAsRead();
-        NotificationPopupController.show();
-        notificationDot.setVisible(false);
-    }
 
     public static boolean hasUnread() {
         return true;
