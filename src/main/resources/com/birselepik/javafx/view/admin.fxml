@@ -3,6 +3,8 @@
 <?import javafx.scene.layout.*?>
 
 
+<?import javafx.scene.shape.Circle?>
+<?import javafx.geometry.Insets?>
 <AnchorPane fx:id="rootPane" xmlns:fx="http://javafx.com/fxml" fx:controller="com.birselepik.javafx.controller.AdminController" prefWidth="400" prefHeight="450">
 
     <BorderPane xmlns:fx="http://javafx.com/fxml">
@@ -14,7 +16,16 @@
                     <Label  fx:id="labelTitle" styleClass="label-title-big" />
                     <Button fx:id="themeToggleButton" text="Karanlık Mod" onAction="#toggleTheme" />
                     <Button fx:id="btnLanguage" onAction="#languageTheme" />
-                    <Button fx:id="btnNotifications" onAction="#showNotifications" />
+
+                    <StackPane fx:id="notificationStack">
+                        <Button fx:id="btnNotifications" text="%notifications" onAction="#handleNotifications"/>
+                        <Circle fx:id="notificationDot" radius="4" fill="red" visible="false">
+                            <StackPane.margin>
+                                <Insets top="2" right="2"/>
+                            </StackPane.margin>
+                        </Circle>
+                    </StackPane>
+
                     <Button fx:id="btnBackup" onAction="#backupData" />
                     <Button fx:id="btnRestore" onAction="#refreshTable" />
 

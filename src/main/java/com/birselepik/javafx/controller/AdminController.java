@@ -2,6 +2,7 @@ package com.birselepik.javafx.controller;
 
 import com.birselepik.javafx.dao.KdvDAO;
 import com.birselepik.javafx.dao.NotebookDAO;
+import com.birselepik.javafx.dao.NotificationDAO;
 import com.birselepik.javafx.dao.UserDAO;
 import com.birselepik.javafx.dto.KdvDTO;
 import com.birselepik.javafx.dto.NotebookDTO;
@@ -21,6 +22,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.print.Printer;
 import javafx.print.PrinterJob;
 import javafx.scene.Node;
@@ -30,6 +32,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -131,6 +135,7 @@ public class AdminController implements Initializable {
     @FXML private Label labelTaxCalculation;
     @FXML private Label labelNotes;
 
+
     @FXML private Button themeToggleButton;
     @FXML private Button btnLanguage;
     @FXML private Button btnNotifications;
@@ -155,12 +160,23 @@ public class AdminController implements Initializable {
     @FXML private Button btnExportExcel;
     @FXML private Button btnMail;
 
+
     // for Theme
     @FXML
     private AnchorPane rootPane;
 
     @FXML
     private Label clockLabel;
+
+    // notification
+    @FXML
+    private Button notificationButton;
+
+    @FXML
+    private Circle notificationBadge;
+
+    @FXML
+    private StackPane notificationStack;
 
 
     @FXML
@@ -184,9 +200,13 @@ public class AdminController implements Initializable {
             System.err.println("❌ Tema dosyası bulunamadı: light-theme.css");
         }
 
-
         // Language
         updateLanguage();
+
+        // Notification
+        StackPane.setAlignment(notificationDot, Pos.TOP_RIGHT);
+        StackPane.setMargin(notificationDot, new Insets(2, 2, 0, 0));
+        checkUnreadNotifications();
 
 
         // Zaman
@@ -1174,7 +1194,6 @@ public class AdminController implements Initializable {
     // BİTİRME PROJESİ
 
     // toggleTheme (light or dark)
-
     private Boolean isDarkMode = false;
 
     @FXML
@@ -1223,10 +1242,13 @@ public class AdminController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        checkUnreadNotifications();
     }
 
     // Translations
     private void updateLanguage() {
+        btnNotifications.setText(LanguageManager.get("notifications"));
         menuFile.setText(LanguageManager.get("menu.file"));
         menuKDVTransactions.setText(LanguageManager.get("menu.KDVTransactions"));
         menuOtherTransactions.setText(LanguageManager.get("menu.otherTransactions"));
@@ -1277,13 +1299,38 @@ public class AdminController implements Initializable {
         btnExportPdf.setText(LanguageManager.get("button.exportPdf"));
         btnExportExcel.setText(LanguageManager.get("button.exportExcel"));
         btnMail.setText(LanguageManager.get("button.mail"));
+
+
+        checkUnreadNotifications();
     }
 
+
+    // Notification
+    @FXML
+    private Circle notificationDot;
+
+    private void checkUnreadNotifications() {
+        boolean hasUnread = NotificationDAO.hasUnread();
+        updateNotificationDot(hasUnread);
+    }
+
+    private void updateNotificationDot(boolean hasUnread) {
+        if (notificationDot != null) {
+            notificationDot.setVisible(hasUnread);
+        }
+    }
 
     @FXML
-    private void showNotifications(ActionEvent event) {
-        // Bildirimleri gösteren popup veya panel açılacak
+    private void handleNotifications() {
+        NotificationDAO.markAllAsRead();
+        notificationDot.setVisible(false);
     }
+
+    public static boolean hasUnread() {
+        return true;
+    }
+
+
 
     @FXML
     private void showProfile(ActionEvent event) {
