@@ -32,6 +32,9 @@ public class UserDTO {
         this.role = role;
     }
 
+    public UserDTO(String birsel, String birselEpik, String mail) {
+    }
+
 
     // Getter And Setter
     // Method
@@ -39,6 +42,9 @@ public class UserDTO {
     public String toString() {
         return username;
     }
+
+
+
 
     /*
     public static void main(String[] args) {

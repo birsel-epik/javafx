@@ -1323,11 +1323,32 @@ public class AdminController implements Initializable {
     }
 
 
-
+    // Profile poup
     @FXML
     private void showProfile(ActionEvent event) {
-        // Kullanıcı profil bilgileri gösterilecek pencere
+        try {
+            UserDTO currentUser = getCurrentUser();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/birselepik/javafx/view/profile.fxml"));
+            Parent root = loader.load();
+
+            ProfileController profileController = loader.getController();
+            profileController.setUserInfo(currentUser);
+
+            Stage stage = new Stage();
+            stage.setTitle("Profil");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+    private UserDTO getCurrentUser() {
+        return new UserDTO("birsel", "Birsel Epik", "binokta@hotmail.com");
+    }
+
 
     @FXML
     private void backupData(ActionEvent event) {
