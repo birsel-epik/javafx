@@ -3,7 +3,7 @@
 ### 🎯 Proje Amacı
 Bu proje, JavaFX kullanarak geliştirilmiş bir masaüstü uygulamasıdır. Uygulama, KDV hesaplamalarını yapabilen, kullanıcı yönetimini sağlayan ve sistem ayarlarını yöneten bir yönetim paneli sunmaktadır. Şirketlerde veri giriş personeli, muhasebeciler ve yöneticiler için kullanılabilecek bir uygulamadır.
 
-▶ [Bitirme Projesi Sunumu: KDV ve Kullanıcı Yönetim Paneli](https://github.com/birsel-epik/javafx/tree/main/pdf/project-presentaiton.pdf)  
+▶ [Bitirme Projesi Sunumu: KDV ve Kullanıcı Yönetim Paneli](https://github.com/birsel-epik/javafx/tree/main/pdf/JavaFX-KDV-ve-Kullanici-Yonetim-Paneli.pdf)  
 
 ---
 ### ✨ Özellikler

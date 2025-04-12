@@ -3,7 +3,7 @@
 ### 🎯 Project Purpose
 This project is a desktop application developed using JavaFX. The application provides an administration panel that can perform KDV calculations, provide user management and manage system settings. It is an application that can be used for data entry personnel, accountants and managers in companies.
 
-▶ [Graduation Project Presentation: KDV and User Management Panel](https://github.com/birsel-epik/javafx/tree/main/pdf/project-presentaiton.pdf)
+▶ [Graduation Project Presentation: KDV and User Management Panel](https://github.com/birsel-epik/javafx/tree/main/pdf/JavaFX-VAT-and-User-Management-Panel.pdf)
 
 
 ---
